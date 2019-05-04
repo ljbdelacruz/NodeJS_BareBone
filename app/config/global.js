@@ -1,12 +1,12 @@
 const env = {
 	debug: false,
 	//Database Service
-	database: 'mytestdb',
+	database: 'myservicedb',
 	username: 'root',
 	password: 'soyamilk_05',
 	host: 'localhost',
 	dialect: 'mysql',
-	migrate: false,
+	migrate: true,
 	//HTTP & HTTPS Service
 	key: './security/cert.key',
 	cert: './security/cert.pem',
