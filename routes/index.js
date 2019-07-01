@@ -15,7 +15,7 @@ router.get('/getAds', function(req, res, next){
 });
 
 
-router.getCategories('/getCategory', function(req, res, next){
+router.get('/getCategory', function(req, res, next){
   res.send([
     {name:'Car', isSelected:false}, 
     {name:'Housing', isSelected:false}, 
@@ -25,7 +25,7 @@ router.getCategories('/getCategory', function(req, res, next){
   ])
 })
 
-router.getRecommended('/getRecommendedAds', function(req, res, next){
+router.get('/getRecommendedAds', function(req, res, next){
   res.send([
     {title:'Club House', price:'$40', description:'3 Bed Room All around for you this is the best place for people who are planning on starting a family', image:[]}, 
     {title:'Jojos Crib', price:'$20', description:'3 Bed Room All around for you this is the best place for people who are planning on starting a family', images:[]},
