@@ -12,6 +12,7 @@ const env = {
 	cert: './security/cert.pem',
 	https: 443,
 	http: 8080,
+	domain:'http://0.0.0.0/',
 	//Token Config
 	tokenValidity: 2678400
 };

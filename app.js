@@ -5,36 +5,39 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 //user router
 var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
-var storesRouter=require('./routes/store');
-var loginRouter=require('./routes/login');
-var v1Router=require('./routes/v1');
-var vstream=require('./routes/vstream');
-var dummyRouter=require('./routes/dummy');
-var categoryRouter=require('./routes/category');
+// var usersRouter = require('./routes/users');
+// var storesRouter=require('./routes/store');
+// var loginRouter=require('./routes/login');
+// var v1Router=require('./routes/v1');
+// var vstream=require('./routes/vstream');
+// var dummyRouter=require('./routes/dummy');
+// var categoryRouter=require('./routes/category');
 var bodyParser = require('./node_modules/body-parser');
 var app = express();
+var server=require('http').createServer(app);
+
+
 
 //Setup use node_modules
 app.use(bodyParser.json())
 //setup DB
-const db = require('./app/config/dbconfig.js');
+// const db = require('./app/config/dbconfig.js');
 const env = require('./app/config/global.js');
-var Role = require('./app/seeders/role.seeder.js');
-var UserSeed=require('./app/seeders/user.seeder.js');
-var ShowsSeed=require('./app/seeders/vstream/shows.seeder.js');
-var userInfoSeed=require('./app/seeders/security/userProfile.seeder.js');
+// var Role = require('./app/seeders/role.seeder.js');
+// var UserSeed=require('./app/seeders/user.seeder.js');
+// var ShowsSeed=require('./app/seeders/vstream/shows.seeder.js');
+// var userInfoSeed=require('./app/seeders/security/userProfile.seeder.js');
 
 
-if(env.migrate == true) {
-	db.sequelize.sync({force: true}).then(() => {
-		console.log("DB Migration Success")
-		// Role.seed();
-		// UserSeed.seed();
-		ShowsSeed.seed();
-		userInfoSeed.seed();
-	});
-}
+// if(env.migrate == true) {
+// 	db.sequelize.sync({force: true}).then(() => {
+// 		console.log("DB Migration Success")
+// 		// Role.seed();
+// 		// UserSeed.seed();
+// 		ShowsSeed.seed();
+// 		userInfoSeed.seed();
+// 	});
+// }
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -48,11 +51,11 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 //Routers
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
-app.use('/login', loginRouter);
-app.use('/v1', v1Router);
-app.use('/vstream', vstream);
-app.use('/dummy', dummyRouter);
+// app.use('/users', usersRouter);
+// app.use('/login', loginRouter);
+// app.use('/v1', v1Router);
+// app.use('/vstream', vstream);
+// app.use('/dummy', dummyRouter);
 // app.use('/stores', storesRouter);
 // app.use('/category', categoryRouter);
 
@@ -72,7 +75,11 @@ app.use(function(err, req, res, next){
 });
 module.exports = app;
 const port = env.http;
-app.listen(port, () => console.log(`Example app listening on port ${port}!`))
+// app.listen(port, () => console.log(`Example app listening on port ${port}!`))
+server.listen(port, ()=>{
+  console.log(`Example app listening on port ${port}!`)
+
+});
 //setup db connection
 // var global=require('./services/global');
 // var connection=require('./services/Plugins/ljnodelinq');
