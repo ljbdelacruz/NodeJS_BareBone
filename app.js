@@ -16,8 +16,6 @@ var bodyParser = require('./node_modules/body-parser');
 var app = express();
 var server=require('http').createServer(app);
 
-
-
 //Setup use node_modules
 app.use(bodyParser.json())
 //setup DB
