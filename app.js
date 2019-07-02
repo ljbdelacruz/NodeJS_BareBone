@@ -49,7 +49,19 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 //Routers
 app.use('/', indexRouter);
-// app.use('/users', usersRouter);
+
+//rentme routers
+var adsRouter = require('./routes/rentmeapi/ads.api');
+app.use('/ads', adsRouter);
+var categoryRouter=require('./routes/rentmeapi/categories.api')
+app.use('/category', categoryRouter);
+var subCategoryRouter=require('./routes/rentmeapi/subcategory.api')
+app.use('/subcategory', subCategoryRouter);
+var userRouter=require('./routes/rentmeapi/user.api');
+app.use('/user', userRouter);
+var userRatingRouter=require('./routes/rentmeapi/userRatings.api');
+app.use('/userrating', userRatingRouter);
+
 // app.use('/login', loginRouter);
 // app.use('/v1', v1Router);
 // app.use('/vstream', vstream);
