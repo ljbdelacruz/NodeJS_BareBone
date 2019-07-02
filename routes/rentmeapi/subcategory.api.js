@@ -9,3 +9,4 @@ router.get('/getSubCategoryByAdID', function(req, res, next){
         {title:'Gym', count:1}
     ])
 })
+module.exports = router;

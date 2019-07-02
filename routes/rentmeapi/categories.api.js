@@ -10,3 +10,4 @@ router.get('/getCategory', function(req, res, next){
       {name:'Dorm', isSelected:false}
     ])
 })
+module.exports = router;

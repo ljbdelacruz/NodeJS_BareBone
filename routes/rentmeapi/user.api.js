@@ -6,5 +6,6 @@ router.post('/auth', function(req, res, next) {
     // res.render('index', { title: 'Express' });
     res.send({username:'ljbdelacruz', accessToken:'1ee'})
 });
+module.exports = router;
 
 

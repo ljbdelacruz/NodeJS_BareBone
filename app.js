@@ -38,6 +38,7 @@ const env = require('./app/config/global.js');
 // }
 
 // view engine setup
+app.use('/', indexRouter);
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
@@ -47,12 +48,9 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-//Routers
-app.use('/', indexRouter);
-
 //rentme routers
-var adsRouter = require('./routes/rentmeapi/ads.api');
-app.use('/ads', adsRouter);
+// var adsRouter = require('./routes/rentmeapi/ads.api');
+// app.use('/ads', adsRouter);
 var categoryRouter=require('./routes/rentmeapi/categories.api')
 app.use('/category', categoryRouter);
 var subCategoryRouter=require('./routes/rentmeapi/subcategory.api')
@@ -60,7 +58,7 @@ app.use('/subcategory', subCategoryRouter);
 var userRouter=require('./routes/rentmeapi/user.api');
 app.use('/user', userRouter);
 var userRatingRouter=require('./routes/rentmeapi/userRatings.api');
-app.use('/userrating', userRatingRouter);
+app.use('/userrating', userRatingRouter)
 
 // app.use('/login', loginRouter);
 // app.use('/v1', v1Router);

@@ -10,5 +10,5 @@ router.get('/getByAdID', function(req, res, next) {
         {id:3, userInfo:{username:'ljbdelacruz2'}, ratings:3}
     ])
 });
-
+module.exports = router;
 
