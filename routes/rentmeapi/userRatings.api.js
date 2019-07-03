@@ -10,5 +10,9 @@ router.get('/getByAdID', function(req, res, next) {
         {id:3, userInfo:{username:'ljbdelacruz2'}, ratings:3}
     ])
 });
+
+router.get('/getAdReview', function(req, res, next){
+    res.send({})
+})
 module.exports = router;
 
