@@ -1,6 +1,10 @@
+/*   
+    URL: /userrating
+
+*/
+
 var express = require('express');
 var router = express.Router();
-
 
 router.get('/getByAdID', function(req, res, next) {
     // res.render('index', { title: 'Express' });
@@ -11,8 +15,17 @@ router.get('/getByAdID', function(req, res, next) {
     ])
 });
 
+
 router.get('/getAdReview', function(req, res, next){
     res.send({})
 })
+
+router.get('/getUserReview', function(req, res, next){
+    res.send({
+        review:4,
+        reviewer:160
+    })
+})
+
 module.exports = router;
 

@@ -49,8 +49,8 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 //rentme routers
-// var adsRouter = require('./routes/rentmeapi/ads.api');
-// app.use('/ads', adsRouter);
+var adsRouter = require('./routes/rentmeapi/ads.api');
+app.use('/ads', adsRouter);
 var categoryRouter=require('./routes/rentmeapi/categories.api')
 app.use('/category', categoryRouter);
 var subCategoryRouter=require('./routes/rentmeapi/subcategory.api')
