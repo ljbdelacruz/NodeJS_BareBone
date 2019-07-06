@@ -1,32 +1,28 @@
+//#region modules
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-//user router
-var indexRouter = require('./routes/index');
-// var usersRouter = require('./routes/users');
-// var storesRouter=require('./routes/store');
-// var loginRouter=require('./routes/login');
-// var v1Router=require('./routes/v1');
-// var vstream=require('./routes/vstream');
-// var dummyRouter=require('./routes/dummy');
-// var categoryRouter=require('./routes/category');
 var bodyParser = require('./node_modules/body-parser');
 var app = express();
 var server=require('http').createServer(app);
+
+//#endregion
+
 
 //Setup use node_modules
 app.use(bodyParser.json())
 //setup DB
 // const db = require('./app/config/dbconfig.js');
 const env = require('./app/config/global.js');
+
+//#region db population
+
 // var Role = require('./app/seeders/role.seeder.js');
 // var UserSeed=require('./app/seeders/user.seeder.js');
 // var ShowsSeed=require('./app/seeders/vstream/shows.seeder.js');
 // var userInfoSeed=require('./app/seeders/security/userProfile.seeder.js');
-
-
 // if(env.migrate == true) {
 // 	db.sequelize.sync({force: true}).then(() => {
 // 		console.log("DB Migration Success")
@@ -37,8 +33,10 @@ const env = require('./app/config/global.js');
 // 	});
 // }
 
+//#endregion
+
 // view engine setup
-app.use('/', indexRouter);
+//#region view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
@@ -48,7 +46,11 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-//rentme routers
+//#endregion
+
+//#region rentme routers
+var indexRouter = require('./routes/index');
+app.use('/', indexRouter);
 var adsRouter = require('./routes/rentmeapi/ads.api');
 app.use('/ads', adsRouter);
 var categoryRouter=require('./routes/rentmeapi/categories.api')
@@ -59,13 +61,7 @@ var userRouter=require('./routes/rentmeapi/user.api');
 app.use('/user', userRouter);
 var userRatingRouter=require('./routes/rentmeapi/userRatings.api');
 app.use('/userrating', userRatingRouter)
-
-// app.use('/login', loginRouter);
-// app.use('/v1', v1Router);
-// app.use('/vstream', vstream);
-// app.use('/dummy', dummyRouter);
-// app.use('/stores', storesRouter);
-// app.use('/category', categoryRouter);
+//#endregion
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -82,20 +78,26 @@ app.use(function(err, req, res, next){
   res.render("error");
 });
 module.exports = app;
+//#region server listening setup
 const port = env.http;
 // app.listen(port, () => console.log(`Example app listening on port ${port}!`))
 server.listen(port, ()=>{
   console.log(`Example app listening on port ${port}!`)
 
 });
+//#endregion
+//#region db connection setup
+
+//#endregion
+
 //setup db connection
-// var global=require('./services/global');
-// var connection=require('./services/Plugins/ljnodelinq');
-// connection.mysqlConfig(global.host, global.username, global.password, global.db, function(conn){
-//   //success
-//   var apis=require('./services/data');
-//   connection.selectFunc(conn);
-//   connection.insertFunc(conn);
-// }, function(){
-//   //failed
-// });
+var global=require('./services/global');
+var connection=require('./services/Plugins/ljnodelinq');
+connection.mysqlConfig(global.dbHost, global.username, global.password, global.db, function(conn){
+  //success
+  var apis=require('./services/data');
+  connection.selectFunc(conn);
+  connection.insertFunc(conn);
+}, function(){
+  //failed
+});
