@@ -13,9 +13,10 @@ db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 
 //#region rentme db
+
 db.Ads=require('../model/rentmeapi/ads.model')(sequelize, Sequelize);
 db.RecommendedAds=require('../model/rentmeapi/recommendedAds.model')(sequelize, Sequelize)
-db.category=require('../model/rentmeapi/categories.model')(sequelize, Sequelize)
+db.Category=require('../model/rentmeapi/categories.model')(sequelize, Sequelize)
 
 //#endregion
 

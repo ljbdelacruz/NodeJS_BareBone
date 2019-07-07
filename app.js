@@ -19,19 +19,17 @@ const env = require('./app/config/global.js');
 
 //#region db population
 
+var category=require('./app/seeders/rentme/category.seeder')
 // var Role = require('./app/seeders/role.seeder.js');
 // var UserSeed=require('./app/seeders/user.seeder.js');
 // var ShowsSeed=require('./app/seeders/vstream/shows.seeder.js');
 // var userInfoSeed=require('./app/seeders/security/userProfile.seeder.js');
-// if(env.migrate == true) {
-// 	db.sequelize.sync({force: true}).then(() => {
-// 		console.log("DB Migration Success")
-// 		// Role.seed();
-// 		// UserSeed.seed();
-// 		ShowsSeed.seed();
-// 		userInfoSeed.seed();
-// 	});
-// }
+if(env.migrate == true) {
+	db.sequelize.sync({force: true}).then(() => {
+    console.log("DB Migration Success")
+    category.seed();
+	});
+}
 
 //#endregion
 
@@ -83,7 +81,6 @@ const port = env.http;
 // app.listen(port, () => console.log(`Example app listening on port ${port}!`))
 server.listen(port, ()=>{
   console.log(`Example app listening on port ${port}!`)
-
 });
 //#endregion
 //#region db connection setup
