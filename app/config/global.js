@@ -5,6 +5,7 @@ const env = {
 	username: 'ljbdelacruz',
 	password: 'soyamilk_05',
 	host: 'mongodb+srv://db1-uyc2y.gcp.mongodb.net/test',
+	dbHost:'localhost',
 	dialect: 'mysql',
 	migrate: true,
 	//HTTP & HTTPS Service
