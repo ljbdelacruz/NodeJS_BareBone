@@ -14,6 +14,9 @@ module.exports = (sequelize, Sequelize) => {
           },
           description:{
             type: Sequelize.STRING
+          },
+          adID:{
+            type: Sequelize.INTEGER
           }
 	});
 	return AdsReview;
