@@ -10,6 +10,15 @@ function AdsRepo(selectFunc, insertFunc){
 }
 
 //#region get
+AdsRepo.prototype.GetByLocation=function(long, lat, success, failed){
+  AdsRepo.prototype.selectFunc.prototype.selectCondition("Ads", long+" < Ads.longitude && Ads.longitude > "+(-long)+" && "+
+  lat+" < Ads.latitude && Ads.latitude > "+(-lat)+" ORDER BY Ads.priority ASC",
+  function(row, fields){
+    success(row, fields);
+  }, function(err){
+    failed(err);
+  })
+}
 AdsRepo.prototype.GetByPriority=function(success, failed){
   AdsRepo.prototype.selectFunc.prototype.selectCondition("Ads", " ORDER BY Ads.priority ASC",
   function(row, fields){
@@ -51,7 +60,10 @@ AdsRepo.prototype.Insert=function(model, success, failed){
     price:model.price,
     currencyCode:model.currencyCode,
     ownerID:model.ownerID,
-    categoryID:model.categoryID
+    categoryID:model.categoryID,
+    priority:model.priority,
+    longitude:model.longitude,
+    latitude:model.latitude
   }).then(ads => {
     success(ads);
   }).catch(err => {
