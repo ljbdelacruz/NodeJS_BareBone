@@ -4,7 +4,9 @@ const env = {
 	database: 'rentmeapi',
 	username: 'root',
 	password: 'soyamilk_05',
-	host: 'mongodb+srv://db1-uyc2y.gcp.mongodb.net/test',
+	//mongo db server do not use if not gonna use
+	mdbhost: 'mongodb+srv://db1-uyc2y.gcp.mongodb.net/test',
+	//mysql db host
 	dbHost:'localhost',
 	dialect: 'mysql',
 	migrate: false,
