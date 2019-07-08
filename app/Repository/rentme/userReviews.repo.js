@@ -25,8 +25,8 @@ UserReviewRepo.prototype.Insert=function(model, success, failed){
     userID:model.userID,
     rating:model.rating,
     description:model.description
-  }).then(category =>{
-    success(category);
+  }).then(userReview =>{
+    success(userReview);
   }).catch(err => {
     failed(JSON.stringify({statusCode:500,description:"Fail! Error -> " + err}));
   })

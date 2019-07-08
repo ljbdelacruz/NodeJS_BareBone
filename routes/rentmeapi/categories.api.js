@@ -1,22 +1,21 @@
 var express = require('express');
 var router = express.Router();
 var apis=require('../../app/Repository/rentme')
+var global=require('../../app/config/global')
+var dummy=require('../../app/seeders/dummy.data')
 
 //#region get
 router.get('/getCategory', function(req, res, next){
-    apis.categoryRepo.GetByAll(function(data){
-      console.log(data);
-    }, function(err){
-      console.log(err);
-    })
-
-    res.send([
-      // {name:'Car', isSelected:false}, 
-      // {name:'Housing', isSelected:false}, 
-      // {name:'Services', isSelected:false},
-      // {name:'Equipments', isSelected:false}, 
-      // {name:'Dorm', isSelected:false}
-    ])
+    if(global.demo){
+      res.send(dummy.category)
+    }else{
+      apis.categoryRepo.GetByAll(function(data){
+        res.send(data);
+      }, function(err){
+        console.log(err);
+        res.send(err);
+      })
+    }
 })
 
 //#endregion

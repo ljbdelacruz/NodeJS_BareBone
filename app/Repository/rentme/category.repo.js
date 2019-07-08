@@ -24,6 +24,8 @@ CategoryRepo.prototype.GetByAll=function(success, failed){
       failed(err);
     })
 }
+
+//this is subcategory part fetching
 CategoryRepo.prototype.GetByParent=function(id, success, failed){
     CategoryRepo.prototype.selectFunc.prototype.selectCondition("Category"," Category.parent="+id,
     function(row, fields){
