@@ -10,7 +10,6 @@ var server=require('http').createServer(app);
 app.use(bodyParser.json())
 //#endregion
 
-
 //#region variables
 const db = require('./app/config/dbconfig.js');
 const env = require('./app/config/global.js');
