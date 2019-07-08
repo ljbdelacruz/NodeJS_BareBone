@@ -2,14 +2,19 @@ const env = {
 	debug: false,
 	//Database Service
 	database: 'rentmeapi',
-	username: 'root',
+	username: 'root05',
 	password: 'soyamilk_05',
 	//mongo db server do not use if not gonna use
 	mdbhost: 'mongodb+srv://db1-uyc2y.gcp.mongodb.net/test',
 	//mysql db host
-	dbHost:'localhost',
+	dbHost:'db4free.net',
+	//use this when running local db
+	// dbHost:'localhost',
 	dialect: 'mysql',
-	migrate: false,
+	migrate: true,
+
+	//if demo true it will use the dummy data
+	demo:false,
 	//HTTP & HTTPS Service
 	key: './security/cert.key',
 	cert: './security/cert.pem',

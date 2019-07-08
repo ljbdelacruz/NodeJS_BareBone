@@ -1,9 +1,9 @@
 module.exports = (sequelize, Sequelize) => {
 	const RecommendedAds = sequelize.define('RecommendedAds', {
-	  id:{
-      type: Sequelize.INTEGER,
-        primaryKey: true,
-		autoIncrement: true,
+      id:{
+        type: Sequelize.INTEGER,
+          primaryKey: true,
+          autoIncrement: true,
       },
       adID:{
         type:Sequelize.INTEGER

@@ -17,6 +17,7 @@ var connection=require('./services/Plugins/ljnodelinq');
 const port = env.http;
 //#endregion
 
+
 //#region db population
 var category=require('./app/seeders/rentme/category.seeder')
 if(env.migrate == true) {
@@ -78,7 +79,6 @@ server.listen(port, ()=>{
 });
 //#endregion
 
-
 //#region setup db connection
 connection.mysqlConfig(env.dbHost, env.username, env.password, env.db, function(conn){
   //success
@@ -88,5 +88,4 @@ connection.mysqlConfig(env.dbHost, env.username, env.password, env.db, function(
 }, function(){
   //failed
 });
-
 //#endregion
