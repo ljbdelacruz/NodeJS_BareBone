@@ -1,16 +1,16 @@
 
 module.exports = (sequelize, Sequelize) => {
 	const Ads = sequelize.define('Ads', {
-	  id: {
-        type: Sequelize.INTEGER,
-        primaryKey: true,
-				autoIncrement: true,
-	  },
-	  title:{
-		  type: Sequelize.STRING
-	  },
-	  description: {
-      type: Sequelize.STRING
+      id: {
+          type: Sequelize.INTEGER,
+          primaryKey: true,
+          autoIncrement: true,
+      },
+      title:{
+        type: Sequelize.STRING
+      },
+	    description: {
+        type: Sequelize.STRING
       },
       price: {
         type: Sequelize.FLOAT
@@ -23,7 +23,17 @@ module.exports = (sequelize, Sequelize) => {
       },
       categoryID:{
         type: Sequelize.INTEGER
+      },
+      priority:{
+        type:Sequelize.INTEGER
+      },
+      longitude:{
+        type: Sequelize.FLOAT
+      },
+      latitude:{
+        type:Sequelize.FLOAT
       }
+
 
 	});
 	return Ads;

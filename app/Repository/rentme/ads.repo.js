@@ -10,6 +10,14 @@ function AdsRepo(selectFunc, insertFunc){
 }
 
 //#region get
+AdsRepo.prototype.GetByPriority=function(success, failed){
+  AdsRepo.prototype.selectFunc.prototype.selectCondition("Ads", " ORDER BY Ads.priority ASC",
+  function(row, fields){
+    success(row, fields);
+  }, function(err){
+    failed(err);
+  })
+}
 AdsRepo.prototype.GetByOwnerID=function(id, success, failed){
   AdsRepo.prototype.selectFunc.prototype.selectCondition("Ads", " Ads.ownerID == "+id,
   function(row, fields){

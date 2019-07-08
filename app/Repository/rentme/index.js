@@ -8,5 +8,4 @@ module.exports={
   categoryRepo:categoryRepo,
   recommendedAdsRepo:recommendedAdsRepo,
   userReviewRepo:userReviewRepo,
-  
 }

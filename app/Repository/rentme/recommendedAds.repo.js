@@ -16,6 +16,14 @@ RecommendedAdsRepo.prototype.GetByCategoryID=function(id, success, failed){
     failed(err);
   })
 }
+RecommendedAdsRepo.prototype.Get=function(success, failed){
+  RecommendedAdsRepo.prototype.selectFunc.prototype.selectCondition("RecommendedAdsRepo", " ORDER BY RecommendedAdsRepo.priority ASC",
+  function(row, fields){
+    success(row, fields);
+  }, function(err){
+    failed(err);
+  })
+}
 
 //#endregion
 
