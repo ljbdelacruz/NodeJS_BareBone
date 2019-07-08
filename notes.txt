@@ -1,0 +1,7 @@
+
+this is how to open mysql and access db
+
+/usr/local/mysql/bin/mysql -uroot -p
+soyamilk_05
+
+
