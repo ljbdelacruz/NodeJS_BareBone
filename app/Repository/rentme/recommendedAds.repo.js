@@ -25,7 +25,7 @@ RecommendedAdsRepo.prototype.Insert=function(model, success, failed){
     adID:model.adID,
     priority:model.priority,
     categoryTypeID:model.categoryTypeID
-  }).then(category => {
+  }).then(category =>{
     success(category);
   }).catch(err => {
     failed(JSON.stringify({statusCode:500,description:"Fail! Error -> " + err}));
