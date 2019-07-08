@@ -1,17 +1,17 @@
 module.exports = (sequelize, Sequelize) => {
-	const Categories = sequelize.define('genre', {
+	const Categories = sequelize.define('Category', {
 	  id: {
-        id: Sequelize.INTEGER,
+      type: Sequelize.INTEGER,
         primaryKey: true,
 				autoIncrement: true,
 	  },
 	  name:{
-		  id: Sequelize.STRING
+		  type: Sequelize.STRING
     },
     //if the category is a sub category of the category
     //set 0 if none
     parent:{
-      id: Sequelize.INTEGER
+      type: Sequelize.INTEGER
     },
 
 	});

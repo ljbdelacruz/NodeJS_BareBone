@@ -1,4 +1,4 @@
-var mysql=require('../../../node_modules/node_modules/mysql');
+var mysql=require('../../../node_modules/mysql');
 
 function MysqlConfig(host, user, password, db, success, failed){
     MysqlConfig.prototype.connections=mysql.createConnection({

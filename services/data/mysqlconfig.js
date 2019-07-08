@@ -1,4 +1,4 @@
-var mysql=require('../../node_modules/node_modules/mysql');
+var mysql=require('../../node_modules/mysql');
 var connections=mysql.createConnection({
     host: 'localhost',
     user: 'root',

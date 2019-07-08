@@ -1,27 +1,28 @@
+
 module.exports = (sequelize, Sequelize) => {
-	const Ads = sequelize.define('genre', {
+	const Ads = sequelize.define('Ads', {
 	  id: {
-        id: Sequelize.INTEGER,
+        type: Sequelize.INTEGER,
         primaryKey: true,
 				autoIncrement: true,
 	  },
 	  title:{
-		  id: Sequelize.STRING
+		  type: Sequelize.STRING
 	  },
 	  description: {
-	  	  id: Sequelize.STRING
+      type: Sequelize.STRING
       },
       price: {
-        id: Sequelize.FLOAT
+        type: Sequelize.FLOAT
       },
       currencyCode:{
-        id: Sequelize.INTEGER
+        type: Sequelize.INTEGER
       },
       ownerID:{
-        id: Sequelize.INTEGER,
+        type: Sequelize.INTEGER,
       },
       categoryID:{
-        id: Sequelize.INTEGER
+        type: Sequelize.INTEGER
       }
 
 	});

@@ -7,23 +7,20 @@ var logger = require('morgan');
 var bodyParser = require('./node_modules/body-parser');
 var app = express();
 var server=require('http').createServer(app);
-
+app.use(bodyParser.json())
 //#endregion
 
 
-//Setup use node_modules
-app.use(bodyParser.json())
-//setup DB
-// const db = require('./app/config/dbconfig.js');
+//#region variables
+const db = require('./app/config/dbconfig.js');
 const env = require('./app/config/global.js');
+//#endregion
+
+
+
 
 //#region db population
-
 var category=require('./app/seeders/rentme/category.seeder')
-// var Role = require('./app/seeders/role.seeder.js');
-// var UserSeed=require('./app/seeders/user.seeder.js');
-// var ShowsSeed=require('./app/seeders/vstream/shows.seeder.js');
-// var userInfoSeed=require('./app/seeders/security/userProfile.seeder.js');
 if(env.migrate == true) {
 	db.sequelize.sync({force: true}).then(() => {
     console.log("DB Migration Success")
@@ -83,14 +80,13 @@ server.listen(port, ()=>{
   console.log(`Example app listening on port ${port}!`)
 });
 //#endregion
+
 //#region db connection setup
 
-//#endregion
 
 //setup db connection
-var global=require('./services/global');
 var connection=require('./services/Plugins/ljnodelinq');
-connection.mysqlConfig(global.dbHost, global.username, global.password, global.db, function(conn){
+connection.mysqlConfig(env.dbHost, env.username, env.password, env.db, function(conn){
   //success
   var apis=require('./services/data');
   connection.selectFunc(conn);
@@ -98,3 +94,5 @@ connection.mysqlConfig(global.dbHost, global.username, global.password, global.d
 }, function(){
   //failed
 });
+
+//#endregion

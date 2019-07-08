@@ -1,18 +1,18 @@
 module.exports = (sequelize, Sequelize) => {
 	const RecommendedAds = sequelize.define('RecommendedAds', {
 	  id:{
-        id: Sequelize.INTEGER,
+      type: Sequelize.INTEGER,
         primaryKey: true,
 		autoIncrement: true,
       },
       adID:{
-          id:Sequelize.INTEGER
+        type:Sequelize.INTEGER
       },
       priority:{
-        id:Sequelize.INTEGER
+        type:Sequelize.INTEGER
       },
       categoryTypeID:{
-        id:Sequelize.INTEGER
+        type:Sequelize.INTEGER
       }
 	});
 	return RecommendedAds;

@@ -1,13 +1,13 @@
 const env = {
 	debug: false,
 	//Database Service
-	database: 'DB1',
-	username: 'ljbdelacruz',
+	database: 'rentmeapi',
+	username: 'root',
 	password: 'soyamilk_05',
 	host: 'mongodb+srv://db1-uyc2y.gcp.mongodb.net/test',
 	dbHost:'localhost',
 	dialect: 'mysql',
-	migrate: true,
+	migrate: false,
 	//HTTP & HTTPS Service
 	key: './security/cert.key',
 	cert: './security/cert.pem',
