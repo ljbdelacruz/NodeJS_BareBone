@@ -24,7 +24,7 @@ router.get('/getRecommendedAds', function(req, res, next){
     repo.adsRepo.GetByPriority(function(ads){
 
     }.bind(this), function(err){
-      
+
     }.bind(this))
   }  
 })
@@ -58,7 +58,11 @@ router.get('/getAdsByUser', function(req, res, next){
 
 router.get('/getByUserCategory', function(req, res, next){
   //get the ads by user category
-
+  if(global.demo){
+    res.send(dummy.rads)
+  }else{
+    res.send({});
+  }
 })
 
 

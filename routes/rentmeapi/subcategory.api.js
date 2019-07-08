@@ -1,12 +1,14 @@
 var express = require('express');
 var router = express.Router();
+const global=require('../../app/config/global')
+const dummy=require('../../app/seeders/dummy.data')
+const repo=require('../../app/Repository/rentme/category.repo');
 
 router.get('/getSubCategoryByAdID', function(req, res, next){
-    res.send([
-        {title:'Rooms', count:1},
-        {title:'Bathroom', count:2},
-        {title:'Pool', count:1},
-        {title:'Gym', count:1}
-    ])
+    if(global.demo){
+        res.send(dummy.categories);        
+    }else{
+        res.send([])
+    }
 })
 module.exports = router;

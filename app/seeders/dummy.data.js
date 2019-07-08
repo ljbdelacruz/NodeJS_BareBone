@@ -20,6 +20,12 @@ const env = {
         {images:[], title:'Sports Club ', desc:'Perfect for hosting your birthday parties and social events Perfect for hosting your birthday parties and social events Perfect for hosting your birthday parties and social events Perfect for hosting your birthday parties and social events Perfect for hosting your birthday parties and social events', price:'$400', priceSubtitle:'Per Night', owner:{title:'Squirtle Mash', subtitle:'Co-Host', profileImage:'', rightImage:''},
             review:{review:4, reviewer:89}
         }
+    ],
+    categories:[
+        {title:'Rooms', count:1},
+        {title:'Bathroom', count:2},
+        {title:'Pool', count:1},
+        {title:'Gym', count:1}
     ]
 
 
