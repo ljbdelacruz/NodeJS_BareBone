@@ -14,10 +14,9 @@ app.use(bodyParser.json())
 //#region variables
 const db = require('./app/config/dbconfig.js');
 const env = require('./app/config/global.js');
+var connection=require('./services/Plugins/ljnodelinq');
+const port = env.http;
 //#endregion
-
-
-
 
 //#region db population
 var category=require('./app/seeders/rentme/category.seeder')
@@ -30,11 +29,9 @@ if(env.migrate == true) {
 
 //#endregion
 
-// view engine setup
 //#region view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
-
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -58,7 +55,7 @@ var userRatingRouter=require('./routes/rentmeapi/userRatings.api');
 app.use('/userrating', userRatingRouter)
 //#endregion
 
-// catch 404 and forward to error handler
+//#region  error handler
 app.use(function(req, res, next) {
   next(createError(404));
 });
@@ -73,19 +70,17 @@ app.use(function(err, req, res, next){
   res.render("error");
 });
 module.exports = app;
+//#endregion
+
 //#region server listening setup
-const port = env.http;
 // app.listen(port, () => console.log(`Example app listening on port ${port}!`))
 server.listen(port, ()=>{
   console.log(`Example app listening on port ${port}!`)
 });
 //#endregion
 
-//#region db connection setup
 
-
-//setup db connection
-var connection=require('./services/Plugins/ljnodelinq');
+//#region setup db connection
 connection.mysqlConfig(env.dbHost, env.username, env.password, env.db, function(conn){
   //success
   var apis=require('./services/data');
