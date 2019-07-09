@@ -2,7 +2,6 @@ var connections=require('../../../services/data/mysqlconfig')
 const db = require('../../config/dbconfig');
 const RentRequest = db.RentRequest;
 
-
 function RentRequestRepo(selectFunc, insertFunc){
     RentRequestRepo.prototype.selectFunc=selectFunc;
     RentRequestRepo.prototype.insertFunc=insertFunc;
@@ -27,7 +26,7 @@ RentRequestRepo.prototype.GetByUserID=function(id, success, failed){
 }
 //#endregion
 
-//#region insert
+//#region post
 RentRequestRepo.prototype.Insert=function(model, success, failed){
   RentRequest.create({
     userID:model.userID,

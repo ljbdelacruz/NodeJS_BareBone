@@ -32,9 +32,7 @@ module.exports = (sequelize, Sequelize) => {
       },
       latitude:{
         type:Sequelize.FLOAT
-      }
-
-
+      },
 	});
 	return Ads;
 }

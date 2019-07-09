@@ -17,7 +17,7 @@ db.sequelize = sequelize;
 //#region ads
 db.Ads=require('../model/rentmeapi/ads.model')(sequelize, Sequelize);
 db.RecommendedAds=require('../model/rentmeapi/recommendedAds.model')(sequelize, Sequelize)
-
+db.AdItems=require('../model/rentmeapi/adItems.model')(sequelize, Sequelize);
 //#endregion
 
 //#region rentRequest
