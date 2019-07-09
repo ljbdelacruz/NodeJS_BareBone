@@ -20,6 +20,9 @@ module.exports = (sequelize, Sequelize) => {
       },
       returnDate:{
           type:Sequelize.DATE
+      },
+      available:{
+        type:Sequelize.BOOLEAN        
       }
 	});
 	return AdItems;

@@ -34,7 +34,8 @@ AdItemsRepo.prototype.Insert=function(model, success, failed){
     unitIdentifier:model.unitIdentifier,
     rentedByUserID:model.rentedByUserID,
     rentedAt:model.rentedAt,
-    returnDate:model.returnDate
+    returnDate:model.returnDate,
+    available:model.available,
   }).then(ads => {
     success(ads);
   }).catch(err => {
@@ -46,7 +47,8 @@ AdItemsRepo.prototype.Update=function(model, success, failed){
         unitIdentifier:model.unitIdentifier,
         rentedByUserID:model.rentedByUserID,
         rentedAt:model.rentedAt,
-        returnDate:model.returnDate
+        returnDate:model.returnDate,
+        available:model.available,
     },{ where: {
               id: {
                 [Op.and]: model.id
