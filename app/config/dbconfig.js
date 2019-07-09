@@ -20,6 +20,10 @@ db.RecommendedAds=require('../model/rentmeapi/recommendedAds.model')(sequelize, 
 
 //#endregion
 
+//#region rentRequest
+db.RentRequest=require('../model/rentmeapi/rentRequest.model')(sequelize, Sequelize);
+//#endregion
+
 //#region category
 db.Category=require('../model/rentmeapi/categories.model')(sequelize, Sequelize)
 //#endregion
