@@ -58,13 +58,12 @@ AdsReviewRepo.prototype.Update=function(model, success, failed){
 }
 AdsReviewRepo.prototype.Delete=function(model, success, failed){
   AdsReview.destroy({
-    where: {
+    where:{
       id: model.id,
       userID: model.userID
     }
   });
 }
-
 //#endregion
 
 

@@ -3,7 +3,6 @@ const db = require('../../config/dbconfig');
 const HostReview = db.HostReview;
 const Op = db.Sequelize.Op;
 
-
 function HostReviewRepo(selectFunc, insertFunc){
     HostReviewRepo.prototype.selectFunc=selectFunc;
     HostReviewRepo.prototype.insertFunc=insertFunc;

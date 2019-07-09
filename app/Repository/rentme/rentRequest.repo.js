@@ -7,8 +7,24 @@ function RentRequestRepo(selectFunc, insertFunc){
     RentRequestRepo.prototype.selectFunc=selectFunc;
     RentRequestRepo.prototype.insertFunc=insertFunc;
 }
-//#region get
 
+//#region get
+RentRequestRepo.prototype.GetByHostID=function(id, success, failed){
+    RentRequestRepo.prototype.selectFunc.prototype.selectCondition("RentRequest", " RentRequest.hostID == "+id,
+    function(row, fields){
+      success(row, fields);
+    }, function(err){
+      failed(err);
+    })
+}
+RentRequestRepo.prototype.GetByUserID=function(id, success, failed){
+    RentRequestRepo.prototype.selectFunc.prototype.selectCondition("RentRequest", " RentRequest.userID == "+id,
+    function(row, fields){
+      success(row, fields);
+    }, function(err){
+      failed(err);
+    })
+}
 //#endregion
 
 //#region insert

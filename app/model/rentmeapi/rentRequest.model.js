@@ -34,5 +34,5 @@ module.exports = (sequelize, Sequelize) => {
           type: Sequelize.BOOLEAN
       }
 	});
-	return UserReview;
+	return RentRequest;
 }
