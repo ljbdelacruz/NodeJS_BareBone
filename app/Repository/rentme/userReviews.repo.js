@@ -8,13 +8,21 @@ function UserReviewRepo(selectFunc, insertFunc){
     UserReviewRepo.prototype.insertFunc=insertFunc;
 }
 //#region get
-UserReviewRepo.prototype.GetByCategoryID=function(id, success, failed){
-    UserReviewRepo.prototype.selectFunc.prototype.selectCondition("UserReview", " RecommendedAdsRepo.categoryTypeID == "+id+" ORDER BY RecommendedAdsRepo.priority ASC",
+UserReviewRepo.prototype.GetByUserID=function(id, success, failed){
+    UserReviewRepo.prototype.selectFunc.prototype.selectCondition("UserReview", " UserReview.userID == "+id,
         function(row, fields){
             success(row, fields);
         }, function(err){
             failed(err);
     })
+}
+UserReviewRepo.prototype.GetByHostID=function(id, success, failed){
+  UserReviewRepo.prototype.selectFunc.prototype.selectCondition("UserReview", " UserReview.hostID == "+id,
+      function(row, fields){
+          success(row, fields);
+      }, function(err){
+          failed(err);
+  })
 }
 
 //#endregion
@@ -22,7 +30,7 @@ UserReviewRepo.prototype.GetByCategoryID=function(id, success, failed){
 //#region insert
 UserReviewRepo.prototype.Insert=function(model, success, failed){
   UserReview.create({
-    userID:model.userID,
+    hostID:model.hostID,
     rating:model.rating,
     description:model.description,
     userID:model.userID

@@ -12,7 +12,6 @@ const db = {};
 db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 
-
 //#region tables
 
 //#region ads
