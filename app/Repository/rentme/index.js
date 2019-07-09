@@ -3,7 +3,6 @@
 const adsRepo=require('./ads.repo')
 const recommendedAdsRepo=require('./recommendedAds.repo')
 const rentRequestRepo=require('./rentRequest.repo');
-const adItemsRepo=require('./adItems.repo');
 
 //#endregion
 
@@ -19,7 +18,6 @@ module.exports={
   
   //#region ads
   adsRepo:adsRepo,
-  adItemsRepo:adItemsRepo,
   rentRequestRepo:rentRequestRepo,
   recommendedAdsRepo:recommendedAdsRepo,
   //#endregion
