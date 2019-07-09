@@ -12,13 +12,29 @@ const db = {};
 db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 
-//#region rentme db
 
+//#region tables
+
+//#region ads
 db.Ads=require('../model/rentmeapi/ads.model')(sequelize, Sequelize);
 db.RecommendedAds=require('../model/rentmeapi/recommendedAds.model')(sequelize, Sequelize)
-db.Category=require('../model/rentmeapi/categories.model')(sequelize, Sequelize)
 
 //#endregion
+
+//#region category
+db.Category=require('../model/rentmeapi/categories.model')(sequelize, Sequelize)
+//#endregion
+
+//#region reviews
+db.UserReview=require('../model/rentmeapi/userReview.model')(sequelize, Sequelize)
+db.AdsReview=require('../model/rentmeapi/adsReview.model')(sequelize, Sequelize)
+db.HostReview=require('../model/rentmeapi/hostReview.model')(sequelize, Sequelize)
+//#endregion
+
+
+
+//#endregion
+
 
 
 

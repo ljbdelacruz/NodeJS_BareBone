@@ -24,7 +24,8 @@ UserReviewRepo.prototype.Insert=function(model, success, failed){
   UserReview.create({
     userID:model.userID,
     rating:model.rating,
-    description:model.description
+    description:model.description,
+    userID:model.userID
   }).then(userReview =>{
     success(userReview);
   }).catch(err => {
