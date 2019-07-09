@@ -19,13 +19,13 @@ const port = env.http;
 
 
 //#region db population
-var category=require('./app/seeders/rentme/category.seeder')
-if(env.migrate == true) {
-	db.sequelize.sync({force: true}).then(() => {
-    console.log("DB Migration Success")
-    category.seed();
-	});
-}
+// var category=require('./app/seeders/rentme/category.seeder')
+// if(env.migrate == true) {
+// 	db.sequelize.sync({force: true}).then(() => {
+//     console.log("DB Migration Success")
+//     category.seed();
+// 	});
+// }
 
 //#endregion
 
@@ -89,3 +89,4 @@ connection.mysqlConfig(env.dbHost, env.username, env.password, env.db, function(
   //failed
 });
 //#endregion
+

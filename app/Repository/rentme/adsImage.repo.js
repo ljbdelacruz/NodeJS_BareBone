@@ -64,21 +64,8 @@ AdsRepo.prototype.GetByRentedUserID=function(id, success, failed){
 //#region post
 AdsRepo.prototype.Insert=function(model, success, failed){
   Ads.create({
-    title:model.title,
-    description:model.description,
-    price:model.price,
-    currencyCode:model.currencyCode,
-    ownerID:model.ownerID,
-    categoryID:model.categoryID,
-    priority:model.priority,
-    longitude:model.longitude,
-    latitude:model.latitude,
-
-    unitIdentifier:model.unitIdentifier,
-    rentedByUserID:model.rentedByUserID,
-    rentedAt:model.rentedAt,
-    returnDate:model.returnDate,
-    available:model.available
+    adsID:model.adsID,
+    source:model.source
   }).then(ads => {
     success(ads);
   }).catch(err => {
