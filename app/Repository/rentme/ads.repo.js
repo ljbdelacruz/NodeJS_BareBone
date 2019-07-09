@@ -52,6 +52,7 @@ AdsRepo.prototype.GetByTitle=function(title, success, failed){
     })
 }
 //#endregion
+
 //#region post
 AdsRepo.prototype.Insert=function(model, success, failed){
   Ads.create({
@@ -63,13 +64,21 @@ AdsRepo.prototype.Insert=function(model, success, failed){
     categoryID:model.categoryID,
     priority:model.priority,
     longitude:model.longitude,
-    latitude:model.latitude
+    latitude:model.latitude,
+
+    unitIdentifier:model.unitIdentifier,
+    rentedByUserID:model.rentedByUserID,
+    rentedAt:model.rentedAt,
+    returnDate:model.returnDate,
+    available:model.available
   }).then(ads => {
     success(ads);
   }).catch(err => {
     failed(JSON.stringify({statusCode:500,description:"Fail! Error -> " + err}));
   })
 }
+
+
 
 //#endregion
 

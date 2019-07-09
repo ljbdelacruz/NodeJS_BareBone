@@ -9,7 +9,7 @@ module.exports = (sequelize, Sequelize) => {
 	    userID:{
         type: Sequelize.INTEGER
       },
-      adItemID:{
+      adID:{
         type: Sequelize.INTEGER
       },
       hostID:{

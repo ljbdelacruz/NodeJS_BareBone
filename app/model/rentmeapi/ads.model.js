@@ -33,6 +33,22 @@ module.exports = (sequelize, Sequelize) => {
       latitude:{
         type:Sequelize.FLOAT
       },
+      
+      unitIdentifier:{
+        type:Sequelize.STRING          
+      },
+      rentedByUserID:{
+        type:Sequelize.INTEGER          
+      },
+      rentedAt:{
+        type:Sequelize.DATE
+      },
+      returnDate:{
+          type:Sequelize.DATE
+      },
+      available:{
+        type:Sequelize.BOOLEAN        
+      }
 	});
 	return Ads;
 }

@@ -30,7 +30,7 @@ RentRequestRepo.prototype.GetByUserID=function(id, success, failed){
 RentRequestRepo.prototype.Insert=function(model, success, failed){
   RentRequest.create({
     userID:model.userID,
-    adItemID:model.adItemID,
+    adID:model.adID,
     hostID:model.hostID,
     message:model.message,
     dateBorrowStart:model.dateBorrowStart,

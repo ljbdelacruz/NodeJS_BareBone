@@ -1,13 +1,16 @@
 /*
   url: /ads
 */
-
+//#region modules
 var express = require('express');
 var router = express.Router();
 const dummy=require('../../app/seeders/dummy.data')
 const global=require('../../app/config/global')
 var repo=require('../../app/Repository/rentme');
+//#endregion
 
+
+//#region get
 router.get('/getAds', function(req, res, next){
     if(global.demo){
       res.send(dummy.ads);
@@ -64,6 +67,14 @@ router.get('/getByUserCategory', function(req, res, next){
     res.send({});
   }
 })
+
+//#endregion
+
+//#region function
+
+function CategoryAPI(){
+}
+//#endregion
 
 
 module.exports = router;
