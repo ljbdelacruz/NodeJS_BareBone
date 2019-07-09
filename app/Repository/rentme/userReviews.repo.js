@@ -27,7 +27,7 @@ UserReviewRepo.prototype.GetByHostID=function(id, success, failed){
 
 //#endregion
 
-//#region insert
+//#region post
 UserReviewRepo.prototype.Insert=function(model, success, failed){
   UserReview.create({
     hostID:model.hostID,
@@ -40,6 +40,28 @@ UserReviewRepo.prototype.Insert=function(model, success, failed){
     failed(JSON.stringify({statusCode:500,description:"Fail! Error -> " + err}));
   })
 }
+
+UserReviewRepo.prototype.Update=function(model, success, failed){
+  UserReview.update({
+    rating:model.rating,
+    description:model.description,
+  },{ where: {
+        id: {
+          [Op.and]: model.id
+        }
+    }
+  }); 
+}
+
+UserReviewRepo.prototype.Delete=function(model, success, failed){
+  UserReview.destroy({
+    where: {
+      id: model.id,
+      hostID: model.hostID
+    }
+  });
+}
+
 
 //#endregion
 

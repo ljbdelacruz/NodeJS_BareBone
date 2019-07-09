@@ -41,6 +41,30 @@ HostReviewRepo.prototype.Insert=function(model, success, failed){
     failed(JSON.stringify({statusCode:500,description:"Fail! Error -> " + err}));
   })
 }
+
+HostReviewRepo.prototype.Update=function(model, success, failed){
+  HostReview.update({
+    rating:model.rating,
+    description:model.description,
+  }, 
+      { where: {
+            id:{
+              [Op.and]: model.id,
+            },
+            userID:{
+              [Op.and]: model.userID,
+            }
+          }
+  }); 
+}
+HostReviewRepo.prototype.Delete=function(model, success, failed){
+  HostReview.destroy({
+    where: {
+      id: model.id,
+      userID: model.userID
+    }
+  });
+}
 //#endregion
 
 

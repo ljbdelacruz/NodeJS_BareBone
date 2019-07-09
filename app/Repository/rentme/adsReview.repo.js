@@ -42,6 +42,29 @@ AdsReviewRepo.prototype.Insert=function(model, success, failed){
   })
 }
 
+AdsReviewRepo.prototype.Update=function(model, success, failed){
+  AdsReview.update({
+    rating:model.rating,
+    description:model.description,
+  },{ where: {
+            id: {
+              [Op.and]: model.id
+            },
+            userID:{
+                [Op.and]: model.userID
+            }
+          }
+  }); 
+}
+AdsReviewRepo.prototype.Delete=function(model, success, failed){
+  AdsReview.destroy({
+    where: {
+      id: model.id,
+      userID: model.userID
+    }
+  });
+}
+
 //#endregion
 
 

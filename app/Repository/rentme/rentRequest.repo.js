@@ -41,11 +41,21 @@ RentRequestRepo.prototype.Update=function(model, success, failed){
         { where: {
               id: {
                 [Op.and]: model.id
+              },
+              userID:{
+                  [Op.and]: model.userID
               }
             }
     }); 
 }
-
+RentRequestRepo.prototype.Delete=function(model, success, failed){
+    RentRequest.destroy({
+      where: {
+        id: model.id,
+        userID: model.userID
+      }
+    });
+}
 
 //#endregion
 
