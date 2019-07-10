@@ -53,5 +53,24 @@ router.get('/assets/images/qr-code.png', function (req, res) {
 router.get('/assets/images/facebook.png', function (req, res) {
   res.sendFile(__dirname +"/assets/images/"+"facebook.png");
 });
+router.get('/assets/images/gmail.png', function (req, res) {
+  res.sendFile(__dirname +"/assets/images/"+"gmail.png");
+});
+router.get('/assets/images/success.png', function (req, res) {
+  res.sendFile(__dirname +"/assets/images/"+"success.png");
+});
+
+//#region flags
+router.get('/assets/images/usa.png', function (req, res) {
+  res.sendFile(__dirname +"/assets/images/flags/"+"usa.png");
+});
+router.get('/assets/images/germany.png', function (req, res) {
+  res.sendFile(__dirname +"/assets/images/flags/"+"germany.png");
+});
+router.get('/assets/images/japan.png', function (req, res) {
+  res.sendFile(__dirname +"/assets/images/flags/"+"japan.png");
+});
+//#endregion
+
 
 module.exports = router;
