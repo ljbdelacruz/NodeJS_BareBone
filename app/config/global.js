@@ -2,14 +2,14 @@ const env = {
 	debug: false,
 	//Database Service
 	database: 'rentmeapi',
-	username: 'root05',
+	// username: 'root05',
+	username: 'root',
 	password: 'soyamilk_05',
 	//mongo db server do not use if not gonna use
 	mdbhost: 'mongodb+srv://db1-uyc2y.gcp.mongodb.net/test',
 	//mysql db host
-	dbHost:'db4free.net',
 	//use this when running local db
-	// dbHost:'localhost',
+	dbHost:'localhost',
 	dialect: 'mysql',
 	migrate: true,
 
