@@ -59,6 +59,12 @@ router.get('/assets/images/gmail.png', function (req, res) {
 router.get('/assets/images/success.png', function (req, res) {
   res.sendFile(__dirname +"/assets/images/"+"success.png");
 });
+router.get('/assets/images/username.png', function (req, res) {
+  res.sendFile(__dirname +"/assets/images/"+"username.png");
+});
+router.get('/assets/images/password.png', function (req, res) {
+  res.sendFile(__dirname +"/assets/images/"+"password.png");
+});
 
 //#region flags
 router.get('/assets/images/usa.png', function (req, res) {
@@ -70,6 +76,14 @@ router.get('/assets/images/germany.png', function (req, res) {
 router.get('/assets/images/japan.png', function (req, res) {
   res.sendFile(__dirname +"/assets/images/flags/"+"japan.png");
 });
+//#endregion
+
+//#region buttons
+router.get('/assets/images/l-arrow.png', function (req, res) {
+  res.sendFile(__dirname +"/assets/images/buttons/"+"l-arrow.png");
+});
+
+
 //#endregion
 
 
