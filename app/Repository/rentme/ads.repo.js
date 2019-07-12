@@ -92,17 +92,72 @@ AdsRepo.prototype.GetByRentedUserID=function(id, success, failed){
 //#endregion
 
 //#region post
-AdsRepo.prototype.Insert=function(model, success, failed){
+AdsRepo.prototype.insert=function(model, success, failed){
   Ads.create({
-    adsID:model.adsID,
-    source:model.source
+    title:model.title,
+    description:model.description,
+    price:model.price,
+    currencyCode:model.currencyCode,
+    ownerID:model.ownerID,
+    categoryID:model.categoryID,
+    priority:model.priority,
+    longitude:model.longitude,
+    latitude:model.latitude,
+    unitIdentifier:model.unitIdentifier,
+    rentedByUserID:model.rentedByUserID,
+    rentedAt:model.rentedAt,
+    returnDate:model.returnDate,
+    available:model.available
   }).then(ads => {
     success(ads);
   }).catch(err => {
     failed(JSON.stringify({statusCode:500,description:"Fail! Error -> " + err}));
   })
 }
+AdsRepo.prototype.update=function(model, success, failed){
+  Category.update(
+    { 
+      title:model.title,
+      description:model.description,
+      price:model.price,
+      currencyCode:model.currencyCode,
+      ownerID:model.ownerID,
+      categoryID:model.categoryID,
+      priority:model.priority,
+      longitude:model.longitude,
+      latitude:model.latitude,
+      unitIdentifier:model.unitIdentifier,
+      rentedByUserID:model.rentedByUserID,
+      rentedAt:model.rentedAt,
+      returnDate:model.returnDate,
+      available:model.available
+    },
+    { 
+      where: { 
+        id: model.id
+      } 
+    }
+  ).then(result=>{
+    if(result[0] == 0){
+      //not found my error code 404
+      failed({message:"Rows not found!", statusCode:404});
+    }else{
+      //success scode 200
+      success({statusCode:200});
+    }
+  }).catch(err=>{
+    failed(err);
+  })
+}
 
+
+AdsRepo.prototype.removeByID=function(id, success, failed){
+  Ads.destroy({
+    where: {
+      id:id
+    }
+  })
+}
 
 
 //#endregion

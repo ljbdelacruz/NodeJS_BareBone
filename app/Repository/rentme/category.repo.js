@@ -46,7 +46,7 @@ CategoryRepo.prototype.GetByParent=function(parentID, success, failed){
 }
 //#endregion
 
-//#region insert
+//#region post
 CategoryRepo.prototype.insert=function(model, success, failed){
   Category.create({
     name:model.name,
