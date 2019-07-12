@@ -8,7 +8,7 @@ function CategoryRepo(selectFunc, insertFunc){
 }
 //#region get
 CategoryRepo.prototype.GetByID=function(id, success, failed){
-  Category.findAll({
+  Category.find({
     where: {
       id: id
     }
@@ -16,13 +16,12 @@ CategoryRepo.prototype.GetByID=function(id, success, failed){
     if(!category){
       failed(JSON.stringify({status:404, description:'Data Not Found'}))
     }else{
-      success(category[0]);
+      success(category);
     }
   })
 }
 CategoryRepo.prototype.GetByAll=function(success, failed){
-    Category.findAll({
-    }).then(category => {
+    Category.findAll({}).then(category => {
       if(!category){
         failed(JSON.stringify({status:404, description:'Data Not Found'}))
       }else{
@@ -32,13 +31,18 @@ CategoryRepo.prototype.GetByAll=function(success, failed){
 }
 
 //this is subcategory part fetching
-CategoryRepo.prototype.GetByParent=function(id, success, failed){
-    CategoryRepo.prototype.selectFunc.prototype.selectCondition("Category"," Category.parent="+id,
-    function(row, fields){
-      success(row, fields);
-    }, function(err){
-      failed(err);
-    })
+CategoryRepo.prototype.GetByParent=function(parentID, success, failed){
+  Category.findAll({
+    where: {
+      parent: parentID
+    }
+  }).then(category => {
+    if(!category){
+      failed(JSON.stringify({status:404, description:'Data Not Found'}))
+    }else{
+      success(category);
+    }
+  })
 }
 //#endregion
 
@@ -58,7 +62,6 @@ CategoryRepo.prototype.update=function(model, success, failed){
       { name: model.name, parent:model.parent },
       { where: { id: model.id } }
     ).then(result=>{
-      console.log(result);
       if(result[0] == 0){
         //not found my error code 404
         failed({message:"Rows not found!", statusCode:404});
@@ -69,8 +72,15 @@ CategoryRepo.prototype.update=function(model, success, failed){
     }).catch(err=>{
       failed(err);
     })
-
 }
+CategoryRepo.prototype.removeByID=function(id, success, failed){
+  Category.destroy({
+    where: {
+      id:id
+    }
+  })
+}
+
 
 
 

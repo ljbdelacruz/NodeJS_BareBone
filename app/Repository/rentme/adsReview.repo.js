@@ -11,26 +11,36 @@ function AdsReviewRepo(selectFunc, insertFunc){
 
 //#region get
 AdsReviewRepo.prototype.GetByAdID=function(id, success, failed){
-  AdsReviewRepo.prototype.selectFunc.prototype.selectCondition("AdsReview", " AdsReview.adID == "+id,
-  function(row, fields){
-    success(row, fields);
-  }, function(err){
-    failed(err);
+  AdsReview.findAll({
+    where: {
+      id: id
+    }
+  }).then(ads => {
+    if(!ads){
+      failed(JSON.stringify({status:404, description:'Data Not Found'}))
+    }else{
+      success(ads);
+    }
   })
 }
 AdsReviewRepo.prototype.GetByUserID=function(id, success, failed){
-  AdsReviewRepo.prototype.selectFunc.prototype.selectCondition("AdsReview", " AdsReview.userID == "+id,
-  function(row, fields){
-    success(row, fields);
-  }, function(err){
-    failed(err);
+  AdsReview.findAll({
+    where: {
+      userID: id
+    }
+  }).then(ads => {
+    if(!ads){
+      failed(JSON.stringify({status:404, description:'Data Not Found'}))
+    }else{
+      success(ads);
+    }
   })
 }
 //#endregion
 
 //#region post
 AdsReviewRepo.prototype.Insert=function(model, success, failed){
-    AdsReview.create({
+  AdsReview.create({
         userID:model.userID,
         rating:model.rating,
         description:model.description,

@@ -7,11 +7,11 @@ var body=require('body-parser')
 var model=require('../../app/model/viewModel/rentmeapi/category.vm')
 
 //#region get
-router.get('/id', function(req, res, next){
+router.get('/:id', function(req, res, next){
     if(global.demo){
       res.send(dummy.category)
     }else{
-      apis.prototype.GetByID(1, function(data){
+      apis.prototype.GetByID(req.params.id, function(data){
         res.send(data);
       }.bind(this), function(err){
         res.send(data);        

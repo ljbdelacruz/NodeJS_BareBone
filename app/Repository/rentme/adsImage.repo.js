@@ -10,32 +10,56 @@ function AdsRepo(selectFunc, insertFunc){
 }
 
 //#region get
-AdsRepo.prototype.GetByLocation=function(long, lat, success, failed){
-  AdsRepo.prototype.selectFunc.prototype.selectCondition("Ads", long+" < Ads.longitude && Ads.longitude > "+(-long)+" && "+
-  lat+" < Ads.latitude && Ads.latitude > "+(-lat)+" ORDER BY Ads.priority ASC",
-  function(row, fields){
-    success(row, fields);
-  }, function(err){
-    failed(err);
+AdsRepo.prototype.GetByLocation=function(long, lat, radius, success, failed){
+  Ads.findAll({
+    where: {
+      longitude:{
+        [Op.lt]:(long-radius),
+        [Op.gt]:(long+radius)
+      },
+      latitude:{
+        [Op.lt]:(lat-radius),
+        [Op.gt]:(lat+radius)
+      }
+    },
+    order: [
+      ['priority', 'ASC'],
+    ],
+  }).then(ads => {
+    if(!ads){
+      failed(JSON.stringify({status:404, description:'Data Not Found'}))
+    }else{
+      success(ads);
+    }
   })
-}
-AdsRepo.prototype.GetByPriority=function(success, failed){
-  AdsRepo.prototype.selectFunc.prototype.selectCondition("Ads", " ORDER BY Ads.priority ASC",
-  function(row, fields){
-    success(row, fields);
-  }, function(err){
-    failed(err);
-  })
+
 }
 AdsRepo.prototype.GetByOwnerID=function(id, success, failed){
-  AdsRepo.prototype.selectFunc.prototype.selectCondition("Ads", " Ads.ownerID == "+id,
-  function(row, fields){
-    success(row, fields);
-  }, function(err){
-    failed(err);
+  Ads.findAll({
+    where: {
+      ownerID:id
+    }
+  }).then(adsImage => {
+    if(!adsImage){
+      failed(JSON.stringify({status:404, description:'Data Not Found'}))
+    }else{
+      success(adsImage);
+    }
   })
 }
 AdsRepo.prototype.GetByCategoryID=function(id, success, failed){
+  Ads.findAll({
+    where: {
+      ownerID:id
+    }
+  }).then(adsImage => {
+    if(!adsImage){
+      failed(JSON.stringify({status:404, description:'Data Not Found'}))
+    }else{
+      success(adsImage);
+    }
+  })
+
     AdsRepo.prototype.selectFunc.prototype.selectCondition("Ads", " Ads.categoryID == "+id,
     function(row, fields){
       success(row, fields);
