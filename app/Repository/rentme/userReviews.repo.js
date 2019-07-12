@@ -1,7 +1,7 @@
 var connections=require('../../../services/data/mysqlconfig')
 const db = require('../../config/dbconfig');
 const UserReview = db.UserReview;
-
+const Op = db.Sequelize.Op;
 
 function UserReviewRepo(selectFunc, insertFunc){
     UserReviewRepo.prototype.selectFunc=selectFunc;
@@ -9,19 +9,29 @@ function UserReviewRepo(selectFunc, insertFunc){
 }
 //#region get
 UserReviewRepo.prototype.GetByUserID=function(id, success, failed){
-    UserReviewRepo.prototype.selectFunc.prototype.selectCondition("UserReview", " UserReview.userID == "+id,
-        function(row, fields){
-            success(row, fields);
-        }, function(err){
-            failed(err);
-    })
+  UserReview.findAll({
+    where: {
+      userID:id
+    }
+  }).then(hostReview => {
+    if(!hostReview){
+      failed(JSON.stringify({status:404, description:'Data Not Found'}))
+    }else{
+      success(hostReview);
+    }
+  })
 }
 UserReviewRepo.prototype.GetByHostID=function(id, success, failed){
-  UserReviewRepo.prototype.selectFunc.prototype.selectCondition("UserReview", " UserReview.hostID == "+id,
-      function(row, fields){
-          success(row, fields);
-      }, function(err){
-          failed(err);
+  UserReview.findAll({
+    where: {
+      hostID:id
+    }
+  }).then(hostReview => {
+    if(!hostReview){
+      failed(JSON.stringify({status:404, description:'Data Not Found'}))
+    }else{
+      success(hostReview);
+    }
   })
 }
 

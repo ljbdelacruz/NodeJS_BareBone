@@ -47,11 +47,25 @@ AdsRepo.prototype.GetByOwnerID=function(id, success, failed){
     }
   })
 }
-AdsRepo.prototype.GetByCategoryID=function(id, success, failed){
+AdsRepo.prototype.GetByCategoryID=function(id,  success, failed){
   Ads.findAll({
     where: {
       categoryID:id
     }
+  }).then(ads => {
+    if(!ads){
+      failed(JSON.stringify({status:404, description:'Data Not Found'}))
+    }else{
+      success(ads);
+    }
+  })
+}
+AdsRepo.prototype.GetByCategoryIDWithLimit=function(id, limit,  success, failed){
+  Ads.findAll({
+    where: {
+      categoryID:id,
+    },
+    limit:limit
   }).then(ads => {
     if(!ads){
       failed(JSON.stringify({status:404, description:'Data Not Found'}))

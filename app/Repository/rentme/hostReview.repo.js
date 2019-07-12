@@ -10,26 +10,36 @@ function HostReviewRepo(selectFunc, insertFunc){
 
 //#region get
 HostReviewRepo.prototype.GetByHostID=function(id, success, failed){
-    HostReviewRepo.prototype.selectFunc.prototype.selectCondition("HostReview", " HostReview.hostID == "+id,
-    function(row, fields){
-      success(row, fields);
-    }, function(err){
-      failed(err);
-    })
+  HostReview.findAll({
+    where: {
+      hostID:id
+    }
+  }).then(hostReview => {
+    if(!hostReview){
+      failed(JSON.stringify({status:404, description:'Data Not Found'}))
+    }else{
+      success(hostReview);
+    }
+  })
 }
 HostReviewRepo.prototype.GetByUserID=function(id, success, failed){
-    HostReviewRepo.prototype.selectFunc.prototype.selectCondition("HostReview", " HostReview.userID == "+id,
-    function(row, fields){
-      success(row, fields);
-    }, function(err){
-      failed(err);
-    })
+  HostReview.findAll({
+    where: {
+      userID:id
+    }
+  }).then(hostReview => {
+    if(!hostReview){
+      failed(JSON.stringify({status:404, description:'Data Not Found'}))
+    }else{
+      success(hostReview);
+    }
+  })
 }
 //#endregion
 
 //#region post
 HostReviewRepo.prototype.Insert=function(model, success, failed){
-    HostReview.create({
+  HostReview.create({
         userID:model.userID,
         rating:model.rating,
         description:model.description,

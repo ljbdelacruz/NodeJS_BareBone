@@ -1,28 +1,38 @@
 var connections=require('../../../services/data/mysqlconfig')
 const db = require('../../config/dbconfig');
 const RentRequest = db.RentRequest;
+const Op = db.Sequelize.Op;
 
 function RentRequestRepo(selectFunc, insertFunc){
     RentRequestRepo.prototype.selectFunc=selectFunc;
     RentRequestRepo.prototype.insertFunc=insertFunc;
 }
-
 //#region get
 RentRequestRepo.prototype.GetByHostID=function(id, success, failed){
-    RentRequestRepo.prototype.selectFunc.prototype.selectCondition("RentRequest", " RentRequest.hostID == "+id,
-    function(row, fields){
-      success(row, fields);
-    }, function(err){
-      failed(err);
-    })
+  RentRequest.findAll({
+    where: {
+      hostID:id
+    }
+  }).then(hostReview => {
+    if(!hostReview){
+      failed(JSON.stringify({status:404, description:'Data Not Found'}))
+    }else{
+      success(hostReview);
+    }
+  })
 }
 RentRequestRepo.prototype.GetByUserID=function(id, success, failed){
-    RentRequestRepo.prototype.selectFunc.prototype.selectCondition("RentRequest", " RentRequest.userID == "+id,
-    function(row, fields){
-      success(row, fields);
-    }, function(err){
-      failed(err);
-    })
+  RentRequest.findAll({
+    where: {
+      userID:id
+    }
+  }).then(hostReview => {
+    if(!hostReview){
+      failed(JSON.stringify({status:404, description:'Data Not Found'}))
+    }else{
+      success(hostReview);
+    }
+  })
 }
 //#endregion
 

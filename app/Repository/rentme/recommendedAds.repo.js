@@ -9,6 +9,8 @@ function RecommendedAdsRepo(selectFunc, insertFunc){
 }
 //#region get
 RecommendedAdsRepo.prototype.GetByCategoryID=function(id, success, failed){
+  
+
   RecommendedAdsRepo.prototype.selectFunc.prototype.selectCondition("RecommendedAdsRepo", " RecommendedAdsRepo.categoryTypeID == "+id+" ORDER BY RecommendedAdsRepo.priority ASC",
   function(row, fields){
     success(row, fields);
