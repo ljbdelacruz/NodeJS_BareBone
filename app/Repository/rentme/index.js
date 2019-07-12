@@ -7,7 +7,7 @@ const rentRequestRepo=require('./rentRequest.repo');
 //#endregion
 
 const categoryRepo=require('./category.repo');
-
+categoryRepo();
 //#region review
 const userReviewRepo=require('./userReviews.repo');
 const hostReviewRepo=require('./hostReview.repo');

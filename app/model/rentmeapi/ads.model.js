@@ -49,6 +49,7 @@ module.exports = (sequelize, Sequelize) => {
       available:{
         type:Sequelize.BOOLEAN        
       }
-	});
+  });
+
 	return Ads;
 }
