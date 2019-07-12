@@ -2,7 +2,6 @@ var connections=require('../../../services/data/mysqlconfig')
 const db = require('../../config/dbconfig');
 const UserReview = db.UserReview;
 const Op = db.Sequelize.Op;
-
 function UserReviewRepo(selectFunc, insertFunc){
     UserReviewRepo.prototype.selectFunc=selectFunc;
     UserReviewRepo.prototype.insertFunc=insertFunc;
