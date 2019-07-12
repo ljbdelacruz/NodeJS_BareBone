@@ -74,21 +74,20 @@ AdsRepo.prototype.GetByTitle=function(title, success, failed){
       success(ads);
     }
   })
-
-    AdsRepo.prototype.selectFunc.prototype.selectCondition("Ads", " Ads.title == "+title,
-    function(row, fields){
-      success(row, fields);
-    }, function(err){
-      failed(err);
-    })
 }
 AdsRepo.prototype.GetByRentedUserID=function(id, success, failed){
-  AdsRepo.prototype.selectFunc.prototype.selectCondition("Ads", " Ads.rentedByUserID == "+id,
-  function(row, fields){
-    success(row, fields);
-  }, function(err){
-    failed(err);
+  Ads.findAll({
+    where: {
+      rentedByUserID:id
+    }
+  }).then(ads => {
+    if(!ads){
+      failed(JSON.stringify({status:404, description:'Data Not Found'}))
+    }else{
+      success(ads);
+    }
   })
+
 }
 //#endregion
 
