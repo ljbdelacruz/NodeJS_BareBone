@@ -52,6 +52,15 @@ router.post('/update', function(req, res, next){
     res.send(err);        
   }.bind(this))
 })
+router.post('/remove', function(req, res, next){
+  let cmodel=new model()
+  cmodel.toObject(req.body);
+  apis.prototype.removeByID(cmodel.id, function(data){
+    res.send(data);
+  }.bind(this), function(err){
+    res.send(err);        
+  }.bind(this))
+})
 //#endregion
 
 

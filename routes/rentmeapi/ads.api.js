@@ -6,7 +6,8 @@ var express = require('express');
 var router = express.Router();
 const dummy=require('../../app/seeders/dummy.data')
 const global=require('../../app/config/global')
-var repo=require('../../app/Repository/rentme');
+var repo=require('../../app/Repository/rentme/ads.repo');
+var model=require('../../app/model/viewModel/rentmeapi/ads.vm');
 //#endregion
 
 
@@ -24,10 +25,10 @@ router.get('/getRecommendedAds', function(req, res, next){
   if(global.demo){
     res.send(dummy.rads)
   }else{
-    repo.adsRepo.GetByPriority(function(ads){
-
+    repo.Get(function(ads){
+      res.send(ads);
     }.bind(this), function(err){
-
+      res.send(err);
     }.bind(this))
   }  
 })
@@ -38,7 +39,7 @@ router.get('/getRecommendedAdsCategory', function(req, res, next){
   }else{
     repo.recommendedAdsRepo.Get(function(rads){
       //fetch the ads info by id
-      
+
     }.bind(this), function(err){
 
     }.bind(this))
@@ -70,11 +71,49 @@ router.get('/getByUserCategory', function(req, res, next){
 
 //#endregion
 
-//#region function
+//#region post
+router.post('/new', function(req, res, next){
+  if(global.demo){
+    res.send(dummy.ads);
+  }else{
+    let cmodel=new model()
+    cmodel.toObject(req.body);
+    repo.prototype.insert(cmodel, function(data){
+      res.send(data);
+    }.bind(this), function(err){
+      res.send(err);
+    }.bind(this))
+  }
+});
+router.post('/update', function(req, res, next){
+  if(global.demo){
+    res.send(dummy.ads);
+  }else{
+    let cmodel=new model()
+    cmodel.toObject(req.body);
+    repo.prototype.update(cmodel, function(data){
+      res.send(data);
+    }.bind(this), function(err){
+      res.send(err);
+    }.bind(this))
+  }
+});
+router.post('/remove', function(req, res, next){
+  if(global.demo){
+    res.send(dummy.ads);
+  }else{
+    let cmodel=new model()
+    cmodel.toObject(req.body);
+    repo.prototype.removeByID(cmodel.id, function(data){
+      res.send(data);
+    }.bind(this), function(err){
+      res.send(err);
+    }.bind(this))
+  }
+});
 
-function CategoryAPI(){
-}
 //#endregion
+
 
 
 module.exports = router;
