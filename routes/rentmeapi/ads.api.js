@@ -51,7 +51,7 @@ router.get('/getAdsByUser', function(req, res, next){
       res.send(dummy.ads)
     }else{
       var catID="";
-      repo.adsRepo.GetByCategoryID(catID, function(data){
+      this.repo.adsRepo.GetByCategoryID(catID, function(data){
         res.send(data);
       }.bind(this), function(err){
         res.send(err);
@@ -78,6 +78,7 @@ router.post('/new', function(req, res, next){
   }else{
     let cmodel=new model()
     cmodel.toObject(req.body);
+    console.log(JSON.stringify(repo));
     repo.prototype.insert(cmodel, function(data){
       res.send(data);
     }.bind(this), function(err){
