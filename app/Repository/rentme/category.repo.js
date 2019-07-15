@@ -21,16 +21,19 @@ CategoryRepo.prototype.GetByID=function(id, success, failed){
   })
 }
 CategoryRepo.prototype.GetByAll=function(success, failed){
-    Category.findAll({
-
-    }).then(category => {
-      if(!category){
-        failed(JSON.stringify({status:404, description:'Data Not Found'}))
-      }else{
-        console.log(category);
-        success(category);
-      }
-    })
+  Category.find({
+    where: {
+      parent: 0
+    }
+  }).then(category => {
+    console.log("Categories");
+    console.log(category);
+    if(!category){
+      failed(JSON.stringify({status:404, description:'Data Not Found'}))
+    }else{
+      success(category);
+    }
+  })
 }
 
 //this is subcategory part fetching

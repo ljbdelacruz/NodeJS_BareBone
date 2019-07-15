@@ -14,7 +14,7 @@ router.get('/:id', function(req, res, next){
       apis.prototype.GetByID(req.params.id, function(data){
         res.send(data);
       }.bind(this), function(err){
-        res.send(data);        
+        res.send(err);
       }.bind(this))
     }
 })
