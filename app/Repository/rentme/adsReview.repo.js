@@ -13,7 +13,7 @@ function AdsReviewRepo(selectFunc, insertFunc){
 AdsReviewRepo.prototype.GetByAdID=function(id, success, failed){
   AdsReview.findAll({
     where: {
-      id: id
+      adID: id,
     }
   }).then(ads => {
     if(!ads){
@@ -36,10 +36,25 @@ AdsReviewRepo.prototype.GetByUserID=function(id, success, failed){
     }
   })
 }
+AdsReviewRepo.prototype.GetByUserADID=function(adid, uid, success, failed){
+  AdsReview.find({
+    where: {
+      userID: uid,
+      adID:adid
+    }
+  }).then(ads => {
+    if(!ads){
+      failed(JSON.stringify({status:404, description:'Data Not Found'}))
+    }else{
+      success(ads);
+    }
+  })
+}
+
 //#endregion
 
 //#region post
-AdsReviewRepo.prototype.Insert=function(model, success, failed){
+AdsReviewRepo.prototype.insert=function(model, success, failed){
   AdsReview.create({
         userID:model.userID,
         rating:model.rating,
@@ -52,7 +67,7 @@ AdsReviewRepo.prototype.Insert=function(model, success, failed){
   })
 }
 
-AdsReviewRepo.prototype.Update=function(model, success, failed){
+AdsReviewRepo.prototype.update=function(model, success, failed){
   AdsReview.update({
     rating:model.rating,
     description:model.description,
@@ -66,7 +81,7 @@ AdsReviewRepo.prototype.Update=function(model, success, failed){
           }
   }); 
 }
-AdsReviewRepo.prototype.Delete=function(model, success, failed){
+AdsReviewRepo.prototype.remove=function(model, success, failed){
   AdsReview.destroy({
     where:{
       id: model.id,

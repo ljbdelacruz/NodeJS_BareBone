@@ -35,10 +35,24 @@ HostReviewRepo.prototype.GetByUserID=function(id, success, failed){
     }
   })
 }
+HostReviewRepo.prototype.GetByUserHostID=function(hid, uid, success, failed){
+  HostReview.findAll({
+    where: {
+      userID:uid,
+      hostID:hid
+    }
+  }).then(hostReview => {
+    if(!hostReview){
+      failed(JSON.stringify({status:404, description:'Data Not Found'}))
+    }else{
+      success(hostReview);
+    }
+  })
+}
 //#endregion
 
 //#region post
-HostReviewRepo.prototype.Insert=function(model, success, failed){
+HostReviewRepo.prototype.insert=function(model, success, failed){
   HostReview.create({
         userID:model.userID,
         rating:model.rating,
@@ -51,7 +65,7 @@ HostReviewRepo.prototype.Insert=function(model, success, failed){
   })
 }
 
-HostReviewRepo.prototype.Update=function(model, success, failed){
+HostReviewRepo.prototype.update=function(model, success, failed){
   HostReview.update({
     rating:model.rating,
     description:model.description,
@@ -66,7 +80,7 @@ HostReviewRepo.prototype.Update=function(model, success, failed){
           }
   }); 
 }
-HostReviewRepo.prototype.Delete=function(model, success, failed){
+HostReviewRepo.prototype.remove=function(model, success, failed){
   HostReview.destroy({
     where: {
       id: model.id,
