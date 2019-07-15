@@ -21,10 +21,13 @@ CategoryRepo.prototype.GetByID=function(id, success, failed){
   })
 }
 CategoryRepo.prototype.GetByAll=function(success, failed){
-    Category.findAll({}).then(category => {
+    Category.findAll({
+
+    }).then(category => {
       if(!category){
         failed(JSON.stringify({status:404, description:'Data Not Found'}))
       }else{
+        console.log(category);
         success(category);
       }
     })

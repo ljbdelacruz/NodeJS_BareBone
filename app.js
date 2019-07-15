@@ -50,8 +50,14 @@ var subCategoryRouter=require('./routes/rentmeapi/subcategory.api')
 app.use('/subcategory', subCategoryRouter);
 var userRouter=require('./routes/rentmeapi/user.api');
 app.use('/user', userRouter);
+//#region ratings
 var userRatingRouter=require('./routes/rentmeapi/userRatings.api');
 app.use('/userrating', userRatingRouter)
+var hostRatingRouter=require('./routes/rentmeapi/hostRatings.api')
+app.use('/hostrating', userRatingRouter)
+//#endregion
+
+
 //#endregion
 
 //#region  error handler

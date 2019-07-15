@@ -5,8 +5,10 @@
 //#region modules
 var express = require('express');
 var router = express.Router();
+var body=require('body-parser')
 var repo=require('../../app/Repository/rentme/hostReview.repo')
 var global=require('../../app/config/global')
+var model=require('../../app/model/viewModel/rentmeapi/hostRatings.vm')
 //#endregion
 
 //#region get
@@ -54,6 +56,8 @@ router.get('/hostid/:hid/:uid', function(req, res, next){
 
 //#region post
 router.post('/new', function(req, res, next){
+    console.log("SHITE!");
+    console.log(req.body)
     let cmodel=new model()
     cmodel.toObject(req.body);
     repo.prototype.insert(cmodel, function(data){
@@ -80,7 +84,14 @@ router.post('/remove', function(req, res, next){
         res.send(err);
     }.bind(this))
 })
-
+router.post("/test", function(req, res, next){
+    console.log("WHAT!");
+    res.send({statusCode:200});
+})
+router.get("/test1", function(req, res, next){
+    console.log("WHAT!");
+    res.send({statusCode:200});
+})
 
 
 
