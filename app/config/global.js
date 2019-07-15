@@ -2,7 +2,6 @@ const env = {
 	debug: false,
 	//Database Service
 	database: 'rentmeapi',
-	// username: 'root05',
 	username: 'root',
 	password: 'soyamilk_05',
 	//mongo db server do not use if not gonna use
@@ -12,7 +11,6 @@ const env = {
 	dbHost:'localhost',
 	dialect: 'mysql',
 	migrate: false,
-
 	//if demo true it will use the dummy data
 	demo:false,
 	//HTTP & HTTPS Service

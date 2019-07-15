@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 
 /* GET home page. */
+//#region get
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
 });
@@ -44,6 +45,10 @@ router.get('/getRecommendedAds', function(req, res, next){
    }
   ])
 })
+
+//#endregion
+
+//#region imageAssets
 router.get('/assets/images/fingerprint.png', function (req, res) {
   res.sendFile(__dirname +"/assets/images/"+"fingerprint.png");
 });
@@ -82,9 +87,8 @@ router.get('/assets/images/japan.png', function (req, res) {
 router.get('/assets/images/l-arrow.png', function (req, res) {
   res.sendFile(__dirname +"/assets/images/buttons/"+"l-arrow.png");
 });
-
-
 //#endregion
 
+//#endregion
 
 module.exports = router;

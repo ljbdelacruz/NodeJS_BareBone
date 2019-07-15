@@ -37,7 +37,7 @@ UserReviewRepo.prototype.GetByHostID=function(id, success, failed){
 //#endregion
 
 //#region post
-UserReviewRepo.prototype.Insert=function(model, success, failed){
+UserReviewRepo.prototype.insert=function(model, success, failed){
   UserReview.create({
     hostID:model.hostID,
     rating:model.rating,
@@ -50,7 +50,7 @@ UserReviewRepo.prototype.Insert=function(model, success, failed){
   })
 }
 
-UserReviewRepo.prototype.Update=function(model, success, failed){
+UserReviewRepo.prototype.update=function(model, success, failed){
   UserReview.update({
     rating:model.rating,
     description:model.description,
@@ -62,7 +62,7 @@ UserReviewRepo.prototype.Update=function(model, success, failed){
   }); 
 }
 
-UserReviewRepo.prototype.Delete=function(model, success, failed){
+UserReviewRepo.prototype.remove=function(model, success, failed){
   UserReview.destroy({
     where: {
       id: model.id,
