@@ -37,7 +37,7 @@ AdsReviewRepo.prototype.GetByUserID=function(id, success, failed){
   })
 }
 AdsReviewRepo.prototype.GetByUserADID=function(adid, uid, success, failed){
-  AdsReview.find({
+  AdsReview.findOne({
     where: {
       userID: uid,
       adID:adid
@@ -79,6 +79,14 @@ AdsReviewRepo.prototype.update=function(model, success, failed){
                 [Op.and]: model.userID
             }
           }
+  }).then(data=>{
+    if(data[0] == 1){
+      success({statusCode:200, description:"Success"});
+    }else{
+      failed({statusCode:404, description:"Data Not Found!"});
+    }
+  }).catch(err=>{
+    failed({statusCode:500,description:"Fail! Error -> " + err});
   }); 
 }
 AdsReviewRepo.prototype.remove=function(model, success, failed){
@@ -87,9 +95,18 @@ AdsReviewRepo.prototype.remove=function(model, success, failed){
       id: model.id,
       userID: model.userID
     }
+  }).then(data=>{
+    if(data[0] == 1){
+      success({statusCode:200, description:"Success"});
+    }else{
+      failed({statusCode:404, description:"Data Not Found!"});
+    }
+  }).catch(err=>{
+    failed({statusCode:500,description:"Fail! Error -> " + err});
   });
 }
 //#endregion
 
+module.exports=AdsReviewRepo;
 
 

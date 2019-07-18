@@ -55,6 +55,8 @@ var userRatingRouter=require('./routes/rentmeapi/userRatings.api');
 app.use('/userrating', userRatingRouter)
 var hostRatingRouter=require('./routes/rentmeapi/hostRatings.api')
 app.use('/hostrating', hostRatingRouter)
+var adsRatingReview=require('./routes/rentmeapi/adsRating.api');
+app.use('/adsrating', adsRatingReview)
 //#endregion
 
 

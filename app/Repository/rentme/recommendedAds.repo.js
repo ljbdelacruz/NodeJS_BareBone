@@ -9,8 +9,6 @@ function RecommendedAdsRepo(selectFunc, insertFunc){
 }
 //#region get
 RecommendedAdsRepo.prototype.GetByCategoryID=function(id, success, failed){
-  
-
   RecommendedAdsRepo.prototype.selectFunc.prototype.selectCondition("RecommendedAdsRepo", " RecommendedAdsRepo.categoryTypeID == "+id+" ORDER BY RecommendedAdsRepo.priority ASC",
   function(row, fields){
     success(row, fields);
@@ -29,7 +27,7 @@ RecommendedAdsRepo.prototype.Get=function(success, failed){
 
 //#endregion
 
-//#region insert
+//#region post
 RecommendedAdsRepo.prototype.Insert=function(model, success, failed){
   RecommendedAds.create({
     adID:model.adID,
@@ -45,5 +43,5 @@ RecommendedAdsRepo.prototype.Insert=function(model, success, failed){
 //#endregion
 
 
-
+module.exports=RecommendedAdsRepo;
 

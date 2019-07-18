@@ -7,6 +7,7 @@ var express = require('express');
 var router = express.Router();
 var repo=require('../../app/Repository/rentme/adsReview.repo')
 var global=require('../../app/config/global')
+var model=require('../../app/model/viewModel/rentmeapi/adsRatings.vm')
 //#endregion
 
 //#region get
@@ -43,7 +44,7 @@ router.get('/hostid/:hid/:uid', function(req, res, next){
     if(global.demo){
         res.send({})
     }else{
-        repo.prototype.GetByUserHostID(req.params.hid, req.params.uid, function(data){
+        repo.prototype.GetByUserADID(req.params.hid, req.params.uid, function(data){
             res.send(data);
         }.bind(this), function(err){
             res.send(err);
@@ -51,7 +52,7 @@ router.get('/hostid/:hid/:uid', function(req, res, next){
     }
 })
 
-router.get('/:adid/:uid', function(req, res, next){
+router.get('/useradID/:adid/:uid', function(req, res, next){
     if(global.demo){
         res.send({})
     }else{
