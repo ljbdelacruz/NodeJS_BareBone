@@ -37,7 +37,7 @@ RentRequestRepo.prototype.GetByUserID=function(id, success, failed){
 //#endregion
 
 //#region post
-RentRequestRepo.prototype.Insert=function(model, success, failed){
+RentRequestRepo.prototype.insert=function(model, success, failed){
   RentRequest.create({
     userID:model.userID,
     adID:model.adID,
@@ -54,7 +54,7 @@ RentRequestRepo.prototype.Insert=function(model, success, failed){
     failed(JSON.stringify({statusCode:500,description:"Fail! Error -> " + err}));
   })
 }
-RentRequestRepo.prototype.Update=function(model, success, failed){
+RentRequestRepo.prototype.update=function(model, success, failed){
     RentRequest.update({
         message:model.message,
         dateBorrowStart:model.dateBorrowStart,
@@ -64,26 +64,38 @@ RentRequestRepo.prototype.Update=function(model, success, failed){
         isApproved:model.isApproved
     }, 
         { where: {
-              id: {
-                [Op.and]: model.id
-              },
-              userID:{
-                  [Op.and]: model.userID
-              }
+              id: model.id,
+              userID:model.userID
             }
-    }); 
+    }).then(data=>{
+      if(data[0] == 1){
+        success({statusCode:200, description:"Success"});
+      }else{
+        failed({statusCode:404, description:"Data Not Found!"});
+      }
+    }).catch(err=>{
+      failed({statusCode:500,description:"Fail! Error -> " + err});
+    });
 }
-RentRequestRepo.prototype.Delete=function(model, success, failed){
+RentRequestRepo.prototype.remove=function(model, success, failed){
     RentRequest.destroy({
       where: {
         id: model.id,
         userID: model.userID
       }
-    });
+    }).then(data=>{
+      if(data[0] == 1){
+        success({statusCode:200, description:"Success"});
+      }else{
+        failed({statusCode:404, description:"Data Not Found!"});
+      }
+    }).catch(err=>{
+      failed({statusCode:500,description:"Fail! Error -> " + err});
+    });;
 }
 
 //#endregion
 
-
+module.exports=RentRequestRepo;
 
 
