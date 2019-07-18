@@ -5,18 +5,19 @@ class RentRequestVM{
         return JSON.stringify(this);
     }
     toObject(object){
-        id:object.id
-        userID:object.userID
-        adID:object.adID
-        hostID:object.hostID
-        message:object.message
-        dateBorrowStart:object.dateBorrowStart
-        dateBorrowEnd:object.dateBorrowEnd
-        payable:object.payable
-        quantity:object.quantity
-        isApproved:object.isApproved
-        createdAt:object.createdAt
-        updatedAt:object.updatedAt
+
+        this.id=object.id;
+        this.userID=object.userID
+        this.adID=object.adID
+        this.hostID=object.hostID
+        this.message=object.message
+        this.dateBorrowStart=object.dateBorrowStart
+        this.dateBorrowEnd=object.dateBorrowEnd
+        this.payable=object.payable
+        this.quantity=object.quantity
+        this.isApproved=object.isApproved
+        this.createdAt=object.createdAt
+        this.updatedAt=object.updatedAt
     }
 }
 module.exports=RentRequestVM;

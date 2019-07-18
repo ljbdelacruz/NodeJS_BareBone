@@ -7,6 +7,7 @@ var express = require('express');
 var router = express.Router();
 var repo=require('../../app/Repository/rentme/rentRequest.repo')
 var global=require('../../app/config/global')
+var body=require('body-parser')
 var model=require('../../app/model/viewModel/rentmeapi/rentRequest.vm')
 //#endregion
 
@@ -43,11 +44,12 @@ router.get('/userid/:id', function(req, res, next) {
 router.post('/new', function(req, res, next){
     let cmodel=new model()
     cmodel.toObject(req.body);
-    repo.prototype.insert(cmodel, function(data){
-        res.send(data);
-    }.bind(this), function(err){
-        res.send(err);
-    }.bind(this))
+    res.send(cmodel.stringify());
+    // repo.prototype.insert(cmodel, function(data){
+    //     res.send(data);
+    // }.bind(this), function(err){
+    //     res.send(err);
+    // }.bind(this))
 })
 router.post('/update', function(req, res, next){
     let cmodel=new model()
@@ -62,6 +64,16 @@ router.post('/remove', function(req, res, next){
     let cmodel=new model()
     cmodel.toObject(req.body);
     repo.prototype.remove(cmodel, function(data){
+        res.send(data);
+    }.bind(this), function(err){
+        res.send(err);
+    }.bind(this))
+})
+router.post('/request/removeid', function(req, res, next){
+    let cmodel=new model()
+    cmodel.toObject(req.body);
+    // res.send(req.body);
+    repo.prototype.removeByID(cmodel.id, function(data){
         res.send(data);
     }.bind(this), function(err){
         res.send(err);
