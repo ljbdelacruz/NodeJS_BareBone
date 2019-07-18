@@ -74,6 +74,4 @@ UserReviewRepo.prototype.remove=function(model, success, failed){
 
 //#endregion
 
-
-
-
+module.exports=UserReviewRepo;

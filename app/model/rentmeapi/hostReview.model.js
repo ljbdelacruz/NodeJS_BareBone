@@ -1,6 +1,6 @@
 
 module.exports = (sequelize, Sequelize) => {
-	const HostReview = sequelize.define('HostReview', {
+	const HostReview = sequelize.define('HostReviews', {
           id: {
             type: Sequelize.INTEGER,
             primaryKey: true,

@@ -24,13 +24,13 @@ db.RentRequest=require('../model/rentmeapi/rentRequest.model')(sequelize, Sequel
 //#endregion
 
 //#region category
-db.Category=require('../model/rentmeapi/categories.model')(sequelize, Sequelize)
+db.Categories=require('../model/rentmeapi/categories.model')(sequelize, Sequelize)
 //#endregion
 
 //#region reviews
 db.UserReview=require('../model/rentmeapi/userReview.model')(sequelize, Sequelize)
 db.AdsReview=require('../model/rentmeapi/adsReview.model')(sequelize, Sequelize)
-db.HostReview=require('../model/rentmeapi/hostReview.model')(sequelize, Sequelize)
+db.HostReviews=require('../model/rentmeapi/hostReview.model')(sequelize, Sequelize)
 //#endregion
 
 

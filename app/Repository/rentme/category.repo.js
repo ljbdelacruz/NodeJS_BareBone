@@ -1,6 +1,6 @@
 var connections=require('../../../services/data/mysqlconfig')
 const db = require('../../config/dbconfig');
-const Category = db.Category;
+const Categories = db.Categories;
 
 function CategoryRepo(selectFunc, insertFunc){
     CategoryRepo.prototype.selectFunc=selectFunc;
@@ -8,8 +8,8 @@ function CategoryRepo(selectFunc, insertFunc){
 }
 //#region get
 CategoryRepo.prototype.GetByID=function(id, success, failed){
-  Category.find({
-    where: {
+  Categories.findOne({
+    where:{
       id: id
     }
   }).then(category => {
@@ -20,25 +20,25 @@ CategoryRepo.prototype.GetByID=function(id, success, failed){
     }
   })
 }
-CategoryRepo.prototype.GetByAll=function(success, failed){
-  Category.find({
+CategoryRepo.prototype.GetByAll=function(parentid,success, failed){
+  Categories.findAll({
     where: {
-      parent: 0
-    }
+      parent: parentid
+    },
   }).then(category => {
-    console.log("Categories");
-    console.log(category);
+
     if(!category){
       failed(JSON.stringify({status:404, description:'Data Not Found'}))
     }else{
       success(category);
     }
   })
+  
 }
 
 //this is subcategory part fetching
 CategoryRepo.prototype.GetByParent=function(parentID, success, failed){
-  Category.findAll({
+  Categories.findAll({
     where: {
       parent: parentID
     }
@@ -54,7 +54,7 @@ CategoryRepo.prototype.GetByParent=function(parentID, success, failed){
 
 //#region post
 CategoryRepo.prototype.insert=function(model, success, failed){
-  Category.create({
+  Categories.create({
     name:model.name,
     parent:model.parent
   }).then(category => {
@@ -64,7 +64,7 @@ CategoryRepo.prototype.insert=function(model, success, failed){
   })
 }
 CategoryRepo.prototype.update=function(model, success, failed){
-    Category.update(
+  Categories.update(
       { name: model.name, parent:model.parent },
       { where: { id: model.id } }
     ).then(result=>{
@@ -80,7 +80,7 @@ CategoryRepo.prototype.update=function(model, success, failed){
     })
 }
 CategoryRepo.prototype.removeByID=function(id, success, failed){
-  Category.destroy({
+  Categories.destroy({
     where: {
       id:id
     }

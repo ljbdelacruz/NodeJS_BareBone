@@ -18,11 +18,11 @@ router.get('/:id', function(req, res, next){
       }.bind(this))
     }
 })
-router.get('/all', function(req, res, next){
+router.get('/list/all/:parentid', function(req, res, next){
   if(global.demo){
     res.send(dummy.category)
   }else{
-    apis.prototype.GetByAll(function(data){
+    apis.prototype.GetByAll(req.params.parentid,function(data){
       res.send(data);
     }.bind(this), function(err){
       res.send(data);        

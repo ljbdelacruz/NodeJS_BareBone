@@ -5,10 +5,11 @@
 //#region modules
 var express = require('express');
 var router = express.Router();
-var body=require('body-parser')
 var repo=require('../../app/Repository/rentme/hostReview.repo')
 var global=require('../../app/config/global')
-var model=require('../../app/model/viewModel/rentmeapi/hostRatings.vm')
+var dummy=require('../../app/seeders/dummy.data')
+var body=require('body-parser')
+var hrmodel=require('../../app/model/viewModel/rentmeapi/hostRatings.vm')
 //#endregion
 
 //#region get
@@ -56,9 +57,7 @@ router.get('/hostid/:hid/:uid', function(req, res, next){
 
 //#region post
 router.post('/new', function(req, res, next){
-    console.log("SHITE!");
-    console.log(req.body)
-    let cmodel=new model()
+    let cmodel=new hrmodel()
     cmodel.toObject(req.body);
     repo.prototype.insert(cmodel, function(data){
         res.send(data);
@@ -67,7 +66,7 @@ router.post('/new', function(req, res, next){
     }.bind(this))
 })
 router.post('/update', function(req, res, next){
-    let cmodel=new model()
+    let cmodel=new hrmodel()
     cmodel.toObject(req.body);
     repo.prototype.update(cmodel, function(data){
         res.send(data);
@@ -76,21 +75,13 @@ router.post('/update', function(req, res, next){
     }.bind(this))
 })
 router.post('/remove', function(req, res, next){
-    let cmodel=new model()
+    let cmodel=new hrmodel()
     cmodel.toObject(req.body);
     repo.prototype.remove(cmodel, function(data){
         res.send(data);
     }.bind(this), function(err){
         res.send(err);
     }.bind(this))
-})
-router.post("/test", function(req, res, next){
-    console.log("WHAT!");
-    res.send({statusCode:200});
-})
-router.get("/test1", function(req, res, next){
-    console.log("WHAT!");
-    res.send({statusCode:200});
 })
 
 

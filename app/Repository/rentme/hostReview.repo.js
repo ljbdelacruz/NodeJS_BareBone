@@ -1,6 +1,6 @@
 var connections=require('../../../services/data/mysqlconfig')
 const db = require('../../config/dbconfig');
-const HostReview = db.HostReview;
+const HostReviews = db.HostReviews;
 const Op = db.Sequelize.Op;
 
 function HostReviewRepo(selectFunc, insertFunc){
@@ -10,7 +10,7 @@ function HostReviewRepo(selectFunc, insertFunc){
 
 //#region get
 HostReviewRepo.prototype.GetByHostID=function(id, success, failed){
-  HostReview.findAll({
+  HostReviews.findOne({
     where: {
       hostID:id
     }
@@ -23,7 +23,7 @@ HostReviewRepo.prototype.GetByHostID=function(id, success, failed){
   })
 }
 HostReviewRepo.prototype.GetByUserID=function(id, success, failed){
-  HostReview.findAll({
+  HostReviews.findAll({
     where: {
       userID:id
     }
@@ -36,7 +36,7 @@ HostReviewRepo.prototype.GetByUserID=function(id, success, failed){
   })
 }
 HostReviewRepo.prototype.GetByUserHostID=function(hid, uid, success, failed){
-  HostReview.findAll({
+  HostReviews.findAll({
     where: {
       userID:uid,
       hostID:hid
@@ -53,7 +53,7 @@ HostReviewRepo.prototype.GetByUserHostID=function(hid, uid, success, failed){
 
 //#region post
 HostReviewRepo.prototype.insert=function(model, success, failed){
-  HostReview.create({
+  HostReviews.create({
         userID:model.userID,
         rating:model.rating,
         description:model.description,
@@ -66,7 +66,7 @@ HostReviewRepo.prototype.insert=function(model, success, failed){
 }
 
 HostReviewRepo.prototype.update=function(model, success, failed){
-  HostReview.update({
+  HostReviews.update({
     rating:model.rating,
     description:model.description,
   }, 
@@ -81,7 +81,7 @@ HostReviewRepo.prototype.update=function(model, success, failed){
   }); 
 }
 HostReviewRepo.prototype.remove=function(model, success, failed){
-  HostReview.destroy({
+  HostReviews.destroy({
     where: {
       id: model.id,
       userID: model.userID
@@ -90,5 +90,5 @@ HostReviewRepo.prototype.remove=function(model, success, failed){
 }
 //#endregion
 
-
+module.exports=HostReviewRepo;
 
