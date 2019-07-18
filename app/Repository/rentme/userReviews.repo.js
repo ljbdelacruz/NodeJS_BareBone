@@ -33,6 +33,20 @@ UserReviewRepo.prototype.GetByHostID=function(id, success, failed){
     }
   })
 }
+UserReviewRepo.prototype.GetByHostUserID=function(hid, uid, success, failed){
+  UserReview.findOne({
+    where: {
+      hostID:hid,
+      userID:uid,
+    }
+  }).then(hostReview => {
+    if(!hostReview){
+      failed(JSON.stringify({status:404, description:'Data Not Found'}))
+    }else{
+      success(hostReview);
+    }
+  })
+}
 
 //#endregion
 
@@ -55,11 +69,17 @@ UserReviewRepo.prototype.update=function(model, success, failed){
     rating:model.rating,
     description:model.description,
   },{ where: {
-        id: {
-          [Op.and]: model.id
-        }
+        id: model.id
     }
-  }); 
+  }).then(data=>{
+    if(data[0] == 1){
+      success({statusCode:200, description:"Success"});
+    }else{
+      failed({statusCode:404, description:"Data Not Found!"});
+    }
+  }).catch(err=>{
+    failed({statusCode:500,description:"Fail! Error -> " + err});
+  }) 
 }
 
 UserReviewRepo.prototype.remove=function(model, success, failed){
@@ -68,6 +88,14 @@ UserReviewRepo.prototype.remove=function(model, success, failed){
       id: model.id,
       hostID: model.hostID
     }
+  }).then(data=>{
+    if(data[0] == 1){
+      success({statusCode:200, description:"Success"});
+    }else{
+      failed({statusCode:404, description:"Data Not Found!"});
+    }
+  }).catch(err=>{
+    failed({statusCode:500,description:"Fail! Error -> " + err});
   });
 }
 

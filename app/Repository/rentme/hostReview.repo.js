@@ -78,6 +78,14 @@ HostReviewRepo.prototype.update=function(model, success, failed){
               [Op.and]: model.userID,
             }
           }
+  }).then(data=>{
+    if(data[0] == 1){
+      success({statusCode:200, description:"Success"});
+    }else{
+      failed({statusCode:404, description:"Data Not Found!"});
+    }
+  }).catch(err=>{
+    failed({statusCode:500,description:"Fail! Error -> " + err});
   }); 
 }
 HostReviewRepo.prototype.remove=function(model, success, failed){
@@ -86,6 +94,14 @@ HostReviewRepo.prototype.remove=function(model, success, failed){
       id: model.id,
       userID: model.userID
     }
+  }).then(data=>{
+    if(data[0] == 1){
+      success({statusCode:200, description:"Success"});
+    }else{
+      failed({statusCode:404, description:"Data Not Found!"});
+    }
+  }).catch(err=>{
+    failed({statusCode:500,description:"Fail! Error -> " + err});
   });
 }
 //#endregion

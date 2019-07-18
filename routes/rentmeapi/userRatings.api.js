@@ -7,6 +7,7 @@ var express = require('express');
 var router = express.Router();
 var repo=require('../../app/Repository/rentme/userReviews.repo')
 var global=require('../../app/config/global')
+var model=require('../../app/model/viewModel/rentmeapi/hostRatings.vm');
 //#endregion
 
 //#region get
@@ -32,6 +33,17 @@ router.get('/hostid/:id', function(req, res, next){
         res.send({})
     }else{
         repo.prototype.GetByHostID(req.params.id, function(data){
+            res.send(data);
+        }.bind(this), function(err){
+            res.send(err);
+        }.bind(this))
+    }
+})
+router.get('/userhostid/:hid/:uid', function(req, res, next){
+    if(global.demo){
+        res.send({})
+    }else{
+        repo.prototype.GetByHostUserID(req.params.hid, req.params.uid,function(data){
             res.send(data);
         }.bind(this), function(err){
             res.send(err);

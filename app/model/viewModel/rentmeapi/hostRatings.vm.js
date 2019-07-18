@@ -1,4 +1,4 @@
-class HostRatingsVM{
+class Ratings{
     constructor(){
     }
     stringify(){
@@ -14,5 +14,5 @@ class HostRatingsVM{
         this.updatedAt=object.updatedAt;
     }
 }
-module.exports=HostRatingsVM;
+module.exports=Ratings;
 
