@@ -44,12 +44,11 @@ router.get('/userid/:id', function(req, res, next) {
 router.post('/new', function(req, res, next){
     let cmodel=new model()
     cmodel.toObject(req.body);
-    res.send(cmodel.stringify());
-    // repo.prototype.insert(cmodel, function(data){
-    //     res.send(data);
-    // }.bind(this), function(err){
-    //     res.send(err);
-    // }.bind(this))
+    repo.prototype.insert(cmodel, function(data){
+        res.send(data);
+    }.bind(this), function(err){
+        res.send(err);
+    }.bind(this))
 })
 router.post('/update', function(req, res, next){
     let cmodel=new model()
@@ -64,16 +63,6 @@ router.post('/remove', function(req, res, next){
     let cmodel=new model()
     cmodel.toObject(req.body);
     repo.prototype.remove(cmodel, function(data){
-        res.send(data);
-    }.bind(this), function(err){
-        res.send(err);
-    }.bind(this))
-})
-router.post('/request/removeid', function(req, res, next){
-    let cmodel=new model()
-    cmodel.toObject(req.body);
-    // res.send(req.body);
-    repo.prototype.removeByID(cmodel.id, function(data){
         res.send(data);
     }.bind(this), function(err){
         res.send(err);

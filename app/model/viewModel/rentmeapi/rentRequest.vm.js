@@ -5,7 +5,6 @@ class RentRequestVM{
         return JSON.stringify(this);
     }
     toObject(object){
-
         this.id=object.id;
         this.userID=object.userID
         this.adID=object.adID

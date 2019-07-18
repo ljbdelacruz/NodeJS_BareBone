@@ -84,7 +84,15 @@ CategoryRepo.prototype.removeByID=function(id, success, failed){
     where: {
       id:id
     }
-  })
+  }).then(data=>{
+    if(data == 1){
+      success({statusCode:200, description:"Success"});
+    }else{
+      failed({statusCode:404, description:"Data Not Found!"});
+    }
+  }).catch(err=>{
+    failed({statusCode:500,description:"Fail! Error -> " + err});
+  });
 }
 
 

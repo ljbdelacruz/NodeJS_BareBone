@@ -39,15 +39,15 @@ RentRequestRepo.prototype.GetByUserID=function(id, success, failed){
 //#region post
 RentRequestRepo.prototype.insert=function(model, success, failed){
   RentRequest.create({
-    userID:parseInt(model.userID),
-    adID: parseInt(model.adID),
-    hostID:parseInt(model.hostID),
+    userID:model.userID,
+    adID: model.adID,
+    hostID:model.hostID,
     message:model.message,
     dateBorrowStart:model.dateBorrowStart,
     dateBorrowEnd:model.dateBorrowEnd,
-    payable:200,
-    quantity:5,
-    isApproved: false,
+    payable:model.payable,
+    quantity:model.quantity,
+    isApproved: model.isApproved,
   }).then(data =>{
     success(data);
   }).catch(err => {
@@ -69,7 +69,6 @@ RentRequestRepo.prototype.update=function(model, success, failed){
             }
     }).then(data=>{
       if(data[0] == 1){
-        success({statusCode:200, description:"Success"});
       }else{
         failed({statusCode:404, description:"Data Not Found!"});
       }
@@ -84,7 +83,7 @@ RentRequestRepo.prototype.remove=function(model, success, failed){
         userID: model.userID
       }
     }).then(data => {
-      if(data[0] == 1){
+      if(data == 1){
         success({statusCode:200, description:"Success"});
       }else{
         failed({statusCode:404, description:"Data Not Found!"});
@@ -92,21 +91,6 @@ RentRequestRepo.prototype.remove=function(model, success, failed){
     }).catch(err=>{
       failed({statusCode:500,description:"Fail! Error -> " + err});
     });;
-}
-RentRequestRepo.prototype.removeByID=function(id, success, failed){
-  RentRequest.destroy({
-    where: {
-      id: id,
-    }
-  }).then(data => {
-    if(data[0] == 1){
-      success({statusCode:200, description:"Success"});
-    }else{
-      failed({statusCode:404, description:"Data Not Found!"});
-    }
-  }).catch(err=>{
-    failed({statusCode:500,description:"Fail! Error -> " + err});
-  });;
 }
 
 //#endregion

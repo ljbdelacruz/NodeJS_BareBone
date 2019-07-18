@@ -89,7 +89,7 @@ UserReviewRepo.prototype.remove=function(model, success, failed){
       hostID: model.hostID
     }
   }).then(data=>{
-    if(data[0] == 1){
+    if(data == 1){
       success({statusCode:200, description:"Success"});
     }else{
       failed({statusCode:404, description:"Data Not Found!"});
