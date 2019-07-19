@@ -9,10 +9,39 @@ const uuidv1 = require('uuid/v1');
 
 
 //#region get
-
+router.get('/id/:id', function(req, res, next) {
+    // res.render('index', { title: 'Express' });
+    if(global.demo){
+        res.send([
+            {id:1, userInfo:{username:'ljbdelacruz'}, ratings:4},
+            {id:2, userInfo:{username:'ljbdelacruz1'}, ratings:3},
+            {id:3, userInfo:{username:'ljbdelacruz2'}, ratings:3}
+        ])
+    }else{
+        repo.prototype.GetByID(req.params.id, function(data){
+            res.send(data);
+        }.bind(this), function(err){
+            res.send(err);
+        }.bind(this))
+    }
+});
+router.get('/social/:id', function(req, res, next){
+    if(global.demo){
+        res.send([
+            {id:1, userInfo:{username:'ljbdelacruz'}, ratings:4},
+            {id:2, userInfo:{username:'ljbdelacruz1'}, ratings:3},
+            {id:3, userInfo:{username:'ljbdelacruz2'}, ratings:3}
+        ])
+    }else{
+        repo.prototype.GetBySocialUID(req.params.id, function(data){
+            res.send(data);
+        }.bind(this), function(err){
+            res.send(err);
+        }.bind(this))
+    }
+})
 
 //#endregion
-
 
 //#region post
 router.post('/auth', function(req, res, next) {

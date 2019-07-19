@@ -72,9 +72,9 @@ UserInformationRepo.prototype.update=function(model, success, failed){
         isVerified:model.isVerified,
         isHost:model.isHost,
     }, 
-        { where: {
+    { where: {
               id: model.id,
-        }
+             }
     }).then(data=>{
       if(data == 1){
         success({statusCode:200, description:"Success"});          
