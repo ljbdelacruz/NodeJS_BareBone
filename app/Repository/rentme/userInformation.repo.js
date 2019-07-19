@@ -3,12 +3,12 @@ const db = require('../../config/dbconfig');
 const UserInformation = db.UserInformation;
 const Op = db.Sequelize.Op;
 
-function RentRequestRepo(selectFunc, insertFunc){
+function UserInformationRepo(selectFunc, insertFunc){
     RentRequestRepo.prototype.selectFunc=selectFunc;
     RentRequestRepo.prototype.insertFunc=insertFunc;
 }
 //#region get
-RentRequestRepo.prototype.GetByID=function(id, success, failed){
+UserInformationRepo.prototype.GetByID=function(id, success, failed){
   UserInformation.findOne({
     where: {
       id:id
@@ -21,7 +21,7 @@ RentRequestRepo.prototype.GetByID=function(id, success, failed){
     }
   })
 }
-RentRequestRepo.prototype.GetBySocialUID=function(id, success, failed){
+UserInformationRepo.prototype.GetBySocialUID=function(id, success, failed){
     UserInformation.findOne({
       where: {
         socialUID:id
@@ -33,31 +33,27 @@ RentRequestRepo.prototype.GetBySocialUID=function(id, success, failed){
         success(data);
       }
     })
-  }
+}
 
 
 //#endregion
 
 //#region post
-RentRequestRepo.prototype.insert=function(model, success, failed){
-  RentRequest.create({
-    userID:model.userID,
-    adID: model.adID,
-    hostID:model.hostID,
-    message:model.message,
-    dateBorrowStart:model.dateBorrowStart,
-    dateBorrowEnd:model.dateBorrowEnd,
-    payable:model.payable,
-    quantity:model.quantity,
-    isApproved: model.isApproved,
+UserInformationRepo.prototype.insertSocial=function(model, success, failed){
+  UserInformation.create({
+    id:model.id,
+    socialUID:model.socialUID,
+    isVerified:true,
+    isHost:false,
+    registration:model.registration
   }).then(data =>{
     success(data);
   }).catch(err => {
     failed(JSON.stringify({statusCode:500,description:"Fail! Error -> " + err}));
   })
 }
-RentRequestRepo.prototype.update=function(model, success, failed){
-    RentRequest.update({
+UserInformationRepo.prototype.update=function(model, success, failed){
+    UserInformation.update({
         message:model.message,
         dateBorrowStart:model.dateBorrowStart,
         dateBorrowEnd:model.dateBorrowEnd,
@@ -78,11 +74,32 @@ RentRequestRepo.prototype.update=function(model, success, failed){
       failed({statusCode:500,description:"Fail! Error -> " + err});
     });
 }
+UserInformationRepo.prototype.update=function(model, success, failed){
+    UserInformation.update({
+        firstname:model.firstname,
+        lastname:model.lastname,
+        profileimage:model.profileimage,
+        isVerified:model.isVerified,
+        isHost:model.isHost,
+    }, 
+        { where: {
+              id: model.id,
+        }
+    }).then(data=>{
+      if(data[0] == 1){
+      }else{
+        failed({statusCode:404, description:"Data Not Found!"});
+      }
+    }).catch(err=>{
+      failed({statusCode:500,description:"Fail! Error -> " + err});
+    });
+}
+
 RentRequestRepo.prototype.remove=function(model, success, failed){
     RentRequest.destroy({
       where: {
         id: model.id,
-        userID: model.userID
+        socialUID:model.socialUID
       }
     }).then(data => {
       if(data == 1){
@@ -92,7 +109,7 @@ RentRequestRepo.prototype.remove=function(model, success, failed){
       }
     }).catch(err=>{
       failed({statusCode:500,description:"Fail! Error -> " + err});
-    });;
+    });
 }
 
 //#endregion

@@ -61,6 +61,23 @@ AdsImageRepo.prototype.insert=function(model, success, failed){
     failed(JSON.stringify({statusCode:500,description:"Fail! Error -> " + err}));
   })
 }
+AdsImageRepo.prototype.remove=function(model, success, failed){
+  AdImage.destroy({
+    where: {
+      id: model.id,
+      UID:model.UID,
+      UID2:model.UID2
+    }
+  }).then(data => {
+    if(data == 1){
+      success({statusCode:200, description:"Success"});
+    }else{
+      failed({statusCode:404, description:"Data Not Found!"});
+    }
+  }).catch(err=>{
+    failed({statusCode:500,description:"Fail! Error -> " + err});
+  });
+}
 
 
 
