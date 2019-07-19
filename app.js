@@ -42,6 +42,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 //#region rentme routers
 var indexRouter = require('./routes/index');
 app.use('/', indexRouter);
+
 //#region ads
 var adsRouter = require('./routes/rentmeapi/ads.api');
 app.use('/ads', adsRouter);
@@ -51,10 +52,12 @@ var adsImageRouter=require('./routes/rentmeapi/adsImage.api');
 app.use('/adsimage', adsImageRouter);
 //#endregion
 
+//#region category
 var categoryRouter=require('./routes/rentmeapi/categories.api')
 app.use('/category', categoryRouter);
 var subCategoryRouter=require('./routes/rentmeapi/subcategory.api')
 app.use('/subcategory', subCategoryRouter);
+//#endregion
 
 var userRouter=require('./routes/rentmeapi/user.api');
 app.use('/user', userRouter);

@@ -34,8 +34,6 @@ UserInformationRepo.prototype.GetBySocialUID=function(id, success, failed){
       }
     })
 }
-
-
 //#endregion
 
 //#region post
@@ -52,27 +50,19 @@ UserInformationRepo.prototype.insertSocial=function(model, success, failed){
     failed(JSON.stringify({statusCode:500,description:"Fail! Error -> " + err}));
   })
 }
-UserInformationRepo.prototype.update=function(model, success, failed){
-    UserInformation.update({
-        message:model.message,
-        dateBorrowStart:model.dateBorrowStart,
-        dateBorrowEnd:model.dateBorrowEnd,
-        payable:model.payable,
-        quantity:model.quantity,
-        isApproved:model.isApproved
-    }, 
-        { where: {
-              id: model.id,
-              userID:model.userID
-            }
-    }).then(data=>{
-      if(data[0] == 1){
-      }else{
-        failed({statusCode:404, description:"Data Not Found!"});
-      }
-    }).catch(err=>{
-      failed({statusCode:500,description:"Fail! Error -> " + err});
-    });
+UserInformationRepo.prototype.insert=function(model, success, failed){
+    UserInformation.create({
+        id:model.id,
+        socialUID:model.socialUID,
+        registration:model.registration,
+        isVerified:false,
+        isHost:false,
+        registration:model.registration
+    }).then(data =>{
+      success(data);
+    }).catch(err => {
+      failed(JSON.stringify({statusCode:500,description:"Fail! Error -> " + err}));
+    })
 }
 UserInformationRepo.prototype.update=function(model, success, failed){
     UserInformation.update({
@@ -86,7 +76,8 @@ UserInformationRepo.prototype.update=function(model, success, failed){
               id: model.id,
         }
     }).then(data=>{
-      if(data[0] == 1){
+      if(data == 1){
+        success({statusCode:200, description:"Success"});          
       }else{
         failed({statusCode:404, description:"Data Not Found!"});
       }
