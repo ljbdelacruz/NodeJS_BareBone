@@ -14,6 +14,10 @@ db.sequelize = sequelize;
 
 //#region tables
 
+//#region userInfo
+db.UserInformation=require('../model/rentmeapi/userInformation.model')(sequelize, Sequelize);
+//#endregion
+
 //#region ads
 db.Ads=require('../model/rentmeapi/ads.model')(sequelize, Sequelize);
 db.RecommendedAds=require('../model/rentmeapi/recommendedAds.model')(sequelize, Sequelize)
