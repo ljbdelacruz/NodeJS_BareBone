@@ -1,16 +1,15 @@
-
 module.exports = (sequelize, Sequelize) => {
 	const AdsImage = sequelize.define('AdsImage', {
       id: {
-          type: Sequelize.INTEGER,
+          type: Sequelize.UUID,
           primaryKey: true,
-          autoIncrement: true,
       },
       adsID:{
           type:Sequelize.INTEGER
       },
       source:{
-          type:Sequelize.STRING
+          type:Sequelize.STRING(1000),
+
       },
       //set the id on the owner of the image
       //2nd UID is for identification 
@@ -20,8 +19,6 @@ module.exports = (sequelize, Sequelize) => {
       UID2:{
         type:Sequelize.STRING
       }
-
-
 	});
 	return AdsImage;
 }

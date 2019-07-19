@@ -1,5 +1,5 @@
 const db = require('../../config/dbconfig');
-const Category = db.Category;
+const Category = db.Categories;
 exports.seed = () => {
 	Category.create({
 		id: 1,

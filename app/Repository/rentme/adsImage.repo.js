@@ -1,29 +1,39 @@
 var connections=require('../../../services/data/mysqlconfig')
 const db = require('../../config/dbconfig');
-const Ads = db.Ads;
+const AdImage = db.AdImage;
 const Op = db.Sequelize.Op;
 
 
-function AdsRepo(selectFunc, insertFunc){
-    AdsRepo.prototype.selectFunc=selectFunc;
-    AdsRepo.prototype.insertFunc=insertFunc;
+function AdsImageRepo(selectFunc, insertFunc){
+  AdsImageRepo.prototype.selectFunc=selectFunc;
+  AdsImageRepo.prototype.insertFunc=insertFunc;
 }
 
 //#region get
-AdsRepo.prototype.GetByLocation=function(long, lat, radius, success, failed){
-  Ads.findAll({
+AdsImageRepo.prototype.GetByAdID=function(id, success, failed){
+  AdImage.findAll({
     where: {
-      longitude:{
-        [Op.lt]:(long-radius),
-        [Op.gt]:(long+radius)
-      },
-      latitude:{
-        [Op.lt]:(lat-radius),
-        [Op.gt]:(lat+radius)
-      }
+      adsID:id
     },
     order: [
-      ['priority', 'ASC'],
+      ['createdAt', 'ASC'],
+    ],
+  }).then(ads => {
+    if(!ads){
+      failed(JSON.stringify({status:404, description:'Data Not Found'}))
+    }else{
+      success(ads);
+    }
+  })
+}
+AdsImageRepo.prototype.GetByUID=function(uid, uid2, success, failed){
+  AdImage.findAll({
+    where: {
+      UID:uid,
+      UID2:uid2
+    },
+    order: [
+      ['createdAt', 'ASC'],
     ],
   }).then(ads => {
     if(!ads){
@@ -34,62 +44,17 @@ AdsRepo.prototype.GetByLocation=function(long, lat, radius, success, failed){
   })
 
 }
-AdsRepo.prototype.GetByOwnerID=function(id, success, failed){
-  Ads.findAll({
-    where: {
-      ownerID:id
-    }
-  }).then(adsImage => {
-    if(!adsImage){
-      failed(JSON.stringify({status:404, description:'Data Not Found'}))
-    }else{
-      success(adsImage);
-    }
-  })
-}
-AdsRepo.prototype.GetByCategoryID=function(id, success, failed){
-  Ads.findAll({
-    where: {
-      ownerID:id
-    }
-  }).then(adsImage => {
-    if(!adsImage){
-      failed(JSON.stringify({status:404, description:'Data Not Found'}))
-    }else{
-      success(adsImage);
-    }
-  })
 
-    AdsRepo.prototype.selectFunc.prototype.selectCondition("Ads", " Ads.categoryID == "+id,
-    function(row, fields){
-      success(row, fields);
-    }, function(err){
-      failed(err);
-    })
-}
-AdsRepo.prototype.GetByTitle=function(title, success, failed){
-    AdsRepo.prototype.selectFunc.prototype.selectCondition("Ads", " Ads.title == "+title,
-    function(row, fields){
-      success(row, fields);
-    }, function(err){
-      failed(err);
-    })
-}
-AdsRepo.prototype.GetByRentedUserID=function(id, success, failed){
-  AdsRepo.prototype.selectFunc.prototype.selectCondition("Ads", " Ads.rentedByUserID == "+id,
-  function(row, fields){
-    success(row, fields);
-  }, function(err){
-    failed(err);
-  })
-}
 //#endregion
 
 //#region post
-AdsRepo.prototype.Insert=function(model, success, failed){
-  Ads.create({
+AdsImageRepo.prototype.insert=function(model, success, failed){
+  AdImage.create({
+    id:model.id,
     adsID:model.adsID,
-    source:model.source
+    source:model.source,
+    UID:model.UID,
+    UID2:model.UID2
   }).then(ads => {
     success(ads);
   }).catch(err => {
@@ -101,5 +66,4 @@ AdsRepo.prototype.Insert=function(model, success, failed){
 
 //#endregion
 
-
-
+module.exports=AdsImageRepo;

@@ -3,3 +3,8 @@ Refer to this docs for sequelize scripting:
 
 http://docs.sequelizejs.com/manual/querying.html
 
+
+
+packages used:
+https://www.npmjs.com/package/uuid
+http://docs.sequelizejs.com/manual/querying.html

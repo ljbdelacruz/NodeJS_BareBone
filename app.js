@@ -47,6 +47,8 @@ var adsRouter = require('./routes/rentmeapi/ads.api');
 app.use('/ads', adsRouter);
 var rentRequest=require('./routes/rentmeapi/rentrequest.api');
 app.use('/rentrequest', rentRequest);
+var adsImageRouter=require('./routes/rentmeapi/adsImage.api');
+app.use('/adsimage', adsImageRouter);
 //#endregion
 
 var categoryRouter=require('./routes/rentmeapi/categories.api')
