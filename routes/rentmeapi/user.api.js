@@ -96,7 +96,7 @@ router.post('/remove', function(req, res, next){
     }else{
         let cmodel=new model()
         cmodel.toObject(req.body);
-        repo.prototype.update(cmodel, function(data){
+        repo.prototype.remove(cmodel, function(data){
             res.send(data);
         }.bind(this), function(err){
             res.send(err);

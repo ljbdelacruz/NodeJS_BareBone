@@ -13,6 +13,8 @@ class RentRequestVM{
         this.socialUID=object.socialUID
         this.isVerified=object.isVerified
         this.isHost=object.isHost
+        this.contactNumber=object.contactNumber
+        this.emailAddress=object.emailAddress
         this.createdAt=object.createdAt
         this.updatedAt=object.updatedAt
     }

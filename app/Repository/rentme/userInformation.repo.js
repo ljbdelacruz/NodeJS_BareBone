@@ -53,11 +53,16 @@ UserInformationRepo.prototype.insertSocial=function(model, success, failed){
 UserInformationRepo.prototype.insert=function(model, success, failed){
     UserInformation.create({
         id:model.id,
+        firstname:model.firstname,
+        lastname:model.lastname,
         socialUID:model.socialUID,
         registration:model.registration,
         isVerified:false,
         isHost:false,
-        registration:model.registration
+        registration:model.registration,
+        emailAddress: JSON.stringify(model.emailAddress),
+        contactNumber:JSON.stringify(model.contactNumber),
+        profileimage:model.profileimage
     }).then(data =>{
       success(data);
     }).catch(err => {
@@ -71,6 +76,8 @@ UserInformationRepo.prototype.update=function(model, success, failed){
         profileimage:model.profileimage,
         isVerified:model.isVerified,
         isHost:model.isHost,
+        emailAddress:model.emailAddress,
+        contactNumber:model.contactNumber,
     }, 
     { where: {
               id: model.id,
@@ -86,8 +93,8 @@ UserInformationRepo.prototype.update=function(model, success, failed){
     });
 }
 
-RentRequestRepo.prototype.remove=function(model, success, failed){
-    RentRequest.destroy({
+UserInformationRepo.prototype.remove=function(model, success, failed){
+    UserInformation.destroy({
       where: {
         id: model.id,
         socialUID:model.socialUID
@@ -105,6 +112,6 @@ RentRequestRepo.prototype.remove=function(model, success, failed){
 
 //#endregion
 
-module.exports=RentRequestRepo;
+module.exports=UserInformationRepo;
 
 
