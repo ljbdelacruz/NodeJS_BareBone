@@ -58,7 +58,7 @@ CategoryRepo.prototype.insert=function(model, success, failed){
     name:model.name,
     parent:model.parent
   }).then(category => {
-    success(category);
+    success(JSON.stringify({statusCode:200, description:"Success"}));
   }).catch(err => {
     failed(JSON.stringify({statusCode:500,description:"Fail! Error -> " + err}));
   })
