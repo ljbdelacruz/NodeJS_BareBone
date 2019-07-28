@@ -11,11 +11,13 @@ http://docs.sequelizejs.com/manual/querying.html
 
 https://www.npmjs.com/package/cryptr
 https://www.npmjs.com/package/bcrypt
+https://www.npmjs.com/package/imgur
+
 
 api for image storage
 
 https://api.imgur.com/endpoints/image/
-
+https://cloudinary.com/console/welcome
 
 
 
