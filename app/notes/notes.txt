@@ -27,5 +27,8 @@ https://stackoverflow.com/questions/51870427/how-to-upload-images-to-google-driv
 https://www.googleapis.com/auth/drive.appfolder
 
 
+reference for google drive access type scope
+https://developers.google.com/drive/api/v2/about-auth
+
 
 
