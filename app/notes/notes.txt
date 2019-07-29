@@ -23,4 +23,9 @@ https://cloudinary.com/console/welcome
 https://stackoverflow.com/questions/51870427/how-to-upload-images-to-google-drive-from-nodejs-api
 
 
+//use this in scope of google drive to allow all access
+https://www.googleapis.com/auth/drive.appfolder
+
+
+
 
