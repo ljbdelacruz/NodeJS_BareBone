@@ -6,7 +6,7 @@
 var express = require('express');
 var router = express.Router();
 var repo=require('../../app/Repository/rentme/rentRequest.repo')
-var global=require('../../app/config/global')
+var global=require('../../app/config/rentme/global')
 var body=require('body-parser')
 var model=require('../../app/model/viewModel/rentmeapi/rentRequest.vm')
 //#endregion

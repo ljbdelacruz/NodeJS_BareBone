@@ -11,8 +11,8 @@ app.use(bodyParser.json())
 //#endregion
 
 //#region variables
-const db = require('./app/config/dbconfig.js');
-const env = require('./app/config/global.js');
+const db = require('./app/config/rentme/dbconfig.js/index.js');
+const env = require('./app/config/rentme/global.js/index.js');
 var connection=require('./services/Plugins/ljnodelinq');
 const port = env.http;
 //#endregion
@@ -36,7 +36,6 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-
 //#endregion
 
 //#region rentme routers

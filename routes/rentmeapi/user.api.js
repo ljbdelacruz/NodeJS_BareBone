@@ -2,7 +2,7 @@
 var express = require('express');
 var router = express.Router();
 var repo=require('../../app/Repository/rentme/userInformation.repo')
-var global=require('../../app/config/global')
+var global=require('../../app/config/rentme/global')
 var model=require('../../app/model/viewModel/rentmeapi/userInformation.vm');
 const uuidv1 = require('uuid/v1');
 //#endregion

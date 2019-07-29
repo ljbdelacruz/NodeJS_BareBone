@@ -1,7 +1,7 @@
 //Load ENV Vars
-const env = require('./global.js');
+const env = require('./global.js/index.js');
 //Init Sequelize for ORM
-const Sequelize = require('../../node_modules/sequelize');
+const Sequelize = require('sequelize');
 const sequelize = new Sequelize(env.database, env.username, env.password, {
   host: env.dbHost,
   dialect: env.dialect,
@@ -15,27 +15,27 @@ db.sequelize = sequelize;
 //#region tables
 
 //#region userInfo
-db.UserInformation=require('../model/rentmeapi/userInformation.model')(sequelize, Sequelize);
+db.UserInformation=require('../../model/rentmeapi/userInformation.model')(sequelize, Sequelize);
 //#endregion
 
 //#region ads
-db.Ads=require('../model/rentmeapi/ads.model')(sequelize, Sequelize);
-db.RecommendedAds=require('../model/rentmeapi/recommendedAds.model')(sequelize, Sequelize)
-db.AdImage=require('../model/rentmeapi/adsImage.model')(sequelize, Sequelize);
+db.Ads=require('../../model/rentmeapi/ads.model')(sequelize, Sequelize);
+db.RecommendedAds=require('../../model/rentmeapi/recommendedAds.model')(sequelize, Sequelize)
+db.AdImage=require('../../model/rentmeapi/adsImage.model')(sequelize, Sequelize);
 //#endregion
 
 //#region rentRequest
-db.RentRequest=require('../model/rentmeapi/rentRequest.model')(sequelize, Sequelize);
+db.RentRequest=require('../../model/rentmeapi/rentRequest.model')(sequelize, Sequelize);
 //#endregion
 
 //#region category
-db.Categories=require('../model/rentmeapi/categories.model')(sequelize, Sequelize)
+db.Categories=require('../../model/rentmeapi/categories.model')(sequelize, Sequelize)
 //#endregion
 
 //#region reviews
-db.UserReview=require('../model/rentmeapi/userReview.model')(sequelize, Sequelize)
-db.AdsReview=require('../model/rentmeapi/adsReview.model')(sequelize, Sequelize)
-db.HostReviews=require('../model/rentmeapi/hostReview.model')(sequelize, Sequelize)
+db.UserReview=require('../../model/rentmeapi/userReview.model')(sequelize, Sequelize)
+db.AdsReview=require('../../model/rentmeapi/adsReview.model')(sequelize, Sequelize)
+db.HostReviews=require('../../model/rentmeapi/hostReview.model')(sequelize, Sequelize)
 //#endregion
 
 

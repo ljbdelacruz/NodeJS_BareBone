@@ -1,4 +1,4 @@
-const db = require('../../config/dbconfig');
+const db = require('../../config/rentme/dbconfig');
 const Category = db.Categories;
 exports.seed = () => {
 	Category.create({

@@ -1,5 +1,5 @@
 var connections=require('../../../services/data/mysqlconfig')
-const db = require('../../config/dbconfig');
+const db = require('../../config/rentme/dbconfig');
 const UserInformation = db.UserInformation;
 const Op = db.Sequelize.Op;
 

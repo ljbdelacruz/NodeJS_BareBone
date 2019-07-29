@@ -6,7 +6,7 @@
 var express = require('express');
 var router = express.Router();
 var apis=require('../../app/Repository/rentme/category.repo')
-var global=require('../../app/config/global')
+var global=require('../../app/config/rentme/global')
 var dummy=require('../../app/seeders/dummy.data')
 var body=require('body-parser')
 var model=require('../../app/model/viewModel/rentmeapi/category.vm')

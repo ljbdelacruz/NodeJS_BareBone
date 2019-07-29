@@ -6,7 +6,7 @@
 var express = require('express');
 var router = express.Router();
 var repo=require('../../app/Repository/rentme/adsReview.repo')
-var global=require('../../app/config/global')
+var global=require('../../app/config/rentme/global')
 var model=require('../../app/model/viewModel/rentmeapi/adsRatings.vm')
 //#endregion
 

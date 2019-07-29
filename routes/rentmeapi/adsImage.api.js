@@ -5,7 +5,7 @@
 var express = require('express');
 var router = express.Router();
 const dummy=require('../../app/seeders/dummy.data')
-const global=require('../../app/config/global')
+const global=require('../../app/config/rentme/global')
 var repo=require('../../app/Repository/rentme/adsImage.repo');
 var model=require('../../app/model/viewModel/rentmeapi/adsImage.vm');
 const fs = require('fs');
