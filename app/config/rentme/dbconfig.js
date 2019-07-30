@@ -1,5 +1,5 @@
 //Load ENV Vars
-const env = require('./global.js/index.js');
+const env = require('./global.js');
 //Init Sequelize for ORM
 const Sequelize = require('sequelize');
 const sequelize = new Sequelize(env.database, env.username, env.password, {

@@ -7,12 +7,15 @@ var logger = require('morgan');
 var bodyParser = require('./node_modules/body-parser');
 var app = express();
 var server=require('http').createServer(app);
+var cors = require('cors');
+app.use(cors());
+
 app.use(bodyParser.json())
 //#endregion
 
 //#region variables
-const db = require('./app/config/rentme/dbconfig.js/index.js');
-const env = require('./app/config/rentme/global.js/index.js');
+const db = require('./app/config/rentme/dbconfig.js');
+const env = require('./app/config/rentme/global.js');
 var connection=require('./services/Plugins/ljnodelinq');
 const port = env.http;
 //#endregion
