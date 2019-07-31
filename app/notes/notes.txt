@@ -32,3 +32,5 @@ https://developers.google.com/drive/api/v2/about-auth
 
 
 
+core data reference
+https://github.com/ljbdelacruz/TestCoreData/blob/master/TestCoreData/ViewController/CategoryViewController.swift
