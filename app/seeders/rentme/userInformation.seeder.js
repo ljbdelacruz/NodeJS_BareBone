@@ -12,4 +12,15 @@ exports.seed = () => {
         isVerified:false,
         isHost:false
     })
+    UserReview.create({
+        firstname:"Senko",
+        lastname:"Musashi",
+        profileimage:"senku",
+        registration:"facebook",
+        socialUID:"2ee",
+        contactNumber:"09394242879",
+        emailAddress:"senku@gmail.com",
+        isVerified:false,
+        isHost:false
+    })
 }
