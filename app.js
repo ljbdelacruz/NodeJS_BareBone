@@ -21,13 +21,32 @@ const port = env.http;
 //#endregion
 
 //#region db population
-var category=require('./app/seeders/rentme/category.seeder')
-var ads=require('./app/seeders/rentme/ads.seender');
+//#region ads
+var adsS=require('./app/seeders/rentme/ads.seender');
+var adsImageS=require('./app/seeders/rentme/adsImage.seeder')
+var userInformationS=require('./app/seeders/rentme/userInformation.seeder')
+var rentRequestS=require('./app/seeders/rentme/rentRequest.seeder')
+//#endregion
+
+var categoryS=require('./app/seeders/rentme/category.seeder')
+
+//#region reviews
+var userReviewS=require('./app/seeders/rentme/userReview.seeder')
+var adsReviewS=require('./app/seeders/rentme/adsReview.seeder')
+var hostReviewS=require('./app/seeders/rentme/hostReviews.seeder')
+//#endregion
+
 if(env.migrate == true) {
 	db.sequelize.sync({force: true}).then(() => {
     console.log("DB Migration Success")
-    category.seed();
-    ads.seed();
+    categoryS.seed();
+    adsS.seed();
+    adsImageS.seed();
+    userInformationS.seed();
+    rentRequestS.seed();
+    userReviewS.seed();
+    adsReviewS.seed();
+    hostReviewS.seed();
 	});
 }
 
