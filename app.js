@@ -22,10 +22,12 @@ const port = env.http;
 
 //#region db population
 var category=require('./app/seeders/rentme/category.seeder')
+var ads=require('./app/seeders/rentme/ads.seender');
 if(env.migrate == true) {
 	db.sequelize.sync({force: true}).then(() => {
     console.log("DB Migration Success")
     category.seed();
+    ads.seed();
 	});
 }
 

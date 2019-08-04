@@ -51,7 +51,10 @@ AdsRepo.prototype.GetByCategoryID=function(id,  success, failed){
   Ads.findAll({
     where: {
       categoryID:id
-    }
+    },
+    order: [
+      ['priority', 'ASC'],
+    ],
   }).then(ads => {
     if(!ads){
       failed(JSON.stringify({status:404, description:'Data Not Found'}))
@@ -78,8 +81,25 @@ AdsRepo.prototype.GetByTitle=function(title, success, failed){
   Ads.findAll({
     where: {
       title:{
-        [Op.like]:title
+        [Op.like]:"%"+title+"%"
       }
+    }
+  }).then(ads => {
+    if(!ads){
+      failed(JSON.stringify({status:404, description:'Data Not Found'}))
+    }else{
+      success(ads);
+    }
+  })
+}
+AdsRepo.prototype.GetByTitleCategory=function(title, cid, success, failed){
+  // Ads.sequlize.query("SELECT * FROM ads WHERE title CONTAINS "+title);
+  Ads.findAll({
+    where: {
+      title:{
+        [Op.like]:"%"+title+"%"
+      },
+      categoryID:cid
     }
   }).then(ads => {
     if(!ads){
@@ -176,5 +196,5 @@ AdsRepo.prototype.removeByID=function(id, success, failed){
 
 //#endregion
 
-
+module.exports=AdsRepo;
 

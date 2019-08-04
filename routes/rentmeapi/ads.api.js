@@ -20,6 +20,20 @@ router.get('/getAds', function(req, res, next){
       res.send()
     }
 });
+router.get('/searchads/:cid/:title', function(req, res, next){
+  if(global.demo){
+    res.send("DEMO");
+  }else{
+    console.log(req.params.title+" "+req.params.cid);
+    repo.prototype.GetByTitleCategory(req.params.title, req.params.cid, 
+    function(data){
+      console.log(data);
+      res.send(data);
+    }, function(){
+      res.send("ERROR!");
+    })
+  }
+})
 //fetching ads based on the priority
 router.get('/getRecommendedAds', function(req, res, next){
   if(global.demo){
@@ -33,31 +47,29 @@ router.get('/getRecommendedAds', function(req, res, next){
   }  
 })
 //fetching ads based on the category searched
-router.get('/getRecommendedAdsCategory', function(req, res, next){
+router.get('/getRecommendedAdsCategory/:cid', function(req, res, next){
   if(global.demo){
     res.send(dummy.rads)
   }else{
-    repo.recommendedAdsRepo.Get(function(rads){
+    repo.prototype.GetByCategoryID(req.params.cid, function(rads){
       //fetch the ads info by id
-
+      res.send(rads);
     }.bind(this), function(err){
-
+      res.send(err);
     }.bind(this))
   }  
 })
 
-router.get('/getAdsByUser', function(req, res, next){
+router.get('/getAdsByUser/:uid', function(req, res, next){
     if(global.demo){
       res.send(dummy.ads)
     }else{
-      var catID="";
-      this.repo.adsRepo.GetByCategoryID(catID, function(data){
+      repo.prototype.GetByOwnerID(req.params.uid, function(data){
         res.send(data);
       }.bind(this), function(err){
         res.send(err);
       }.bind(this))
     }
-
 })
 
 router.get('/getByUserCategory', function(req, res, next){
@@ -78,7 +90,6 @@ router.post('/new', function(req, res, next){
   }else{
     let cmodel=new model()
     cmodel.toObject(req.body);
-    console.log(JSON.stringify(repo));
     repo.prototype.insert(cmodel, function(data){
       res.send(data);
     }.bind(this), function(err){
