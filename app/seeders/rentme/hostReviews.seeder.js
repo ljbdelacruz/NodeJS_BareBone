@@ -1,5 +1,5 @@
 const db = require('../../config/rentme/dbconfig');
-const HostReview = db.HostReviews;
+const HostReviews = db.HostReviews;
 exports.seed = () => {
 	HostReviews.create({
         userID:1,

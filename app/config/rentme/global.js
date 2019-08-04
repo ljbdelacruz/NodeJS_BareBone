@@ -10,7 +10,7 @@ const env = {
 	//use this when running local db
 	dbHost:'localhost',
 	dialect: 'mysql',
-	migrate: false,
+	migrate: true,
 	//if demo true it will use the dummy data
 	demo:false,
 	//HTTP & HTTPS Service

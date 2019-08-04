@@ -41,8 +41,8 @@ if(env.migrate == true) {
     console.log("DB Migration Success")
     categoryS.seed();
     adsS.seed();
-    adsImageS.seed();
-    userInformationS.seed();
+    // adsImageS.seed();
+    // userInformationS.seed();
     rentRequestS.seed();
     userReviewS.seed();
     adsReviewS.seed();
