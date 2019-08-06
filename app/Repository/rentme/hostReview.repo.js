@@ -13,7 +13,10 @@ HostReviewRepo.prototype.GetByHostID=function(id, success, failed){
   HostReviews.findOne({
     where: {
       hostID:id
-    }
+    },
+    order:[
+      ['updatedAt', 'ASC']
+    ]
   }).then(hostReview => {
     if(!hostReview){
       failed(JSON.stringify({status:404, description:'Data Not Found'}))
@@ -77,7 +80,7 @@ HostReviewRepo.prototype.update=function(model, success, failed){
             userID:{
               [Op.and]: model.userID,
             }
-          }
+      }
   }).then(data=>{
     if(data[0] == 1){
       success({statusCode:200, description:"Success"});

@@ -12,7 +12,10 @@ RentRequestRepo.prototype.GetByHostID=function(id, success, failed){
   RentRequest.findAll({
     where: {
       hostID:id
-    }
+    },
+    order:[
+      ['updatedAt', 'ASC']
+    ]
   }).then(hostReview => {
     if(!hostReview){
       failed(JSON.stringify({status:404, description:'Data Not Found'}))
@@ -25,7 +28,10 @@ RentRequestRepo.prototype.GetByUserID=function(id, success, failed){
   RentRequest.findAll({
     where: {
       userID:id
-    }
+    },
+    order:[
+      ['updatedAt', 'ASC']
+    ]
   }).then(hostReview => {
     if(!hostReview){
       failed(JSON.stringify({status:404, description:'Data Not Found'}))

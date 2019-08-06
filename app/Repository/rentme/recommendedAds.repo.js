@@ -3,6 +3,7 @@ const db = require('../../config/dbconfig');
 const RecommendedAds = db.RecommendedAds;
 
 
+
 function RecommendedAdsRepo(selectFunc, insertFunc){
     RecommendedAdsRepo.prototype.selectFunc=selectFunc;
     RecommendedAdsRepo.prototype.insertFunc=insertFunc;

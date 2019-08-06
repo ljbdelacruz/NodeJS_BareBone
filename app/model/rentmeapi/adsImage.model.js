@@ -1,7 +1,7 @@
 module.exports = (sequelize, Sequelize) => {
 	const AdsImage = sequelize.define('AdsImage', {
       id: {
-          type: Sequelize.UUID,
+          type: Sequelize.STRING,
           primaryKey: true,
       },
       adsID:{

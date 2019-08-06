@@ -1,7 +1,10 @@
 const db = require('../../config/rentme/dbconfig');
 const UserReview = db.UserReview;
+const uuidv1 = require('uuid/v1');
+
 exports.seed = () => {
 	UserReview.create({
+        id:uuidv1(),
         firstname:"Lainel JOhn",
         lastname:"Dela Cruz",
         profileimage:"ldelacruz",
@@ -13,6 +16,7 @@ exports.seed = () => {
         isHost:false
     })
     UserReview.create({
+        id:uuidv1(),
         firstname:"Senko",
         lastname:"Musashi",
         profileimage:"senku",
