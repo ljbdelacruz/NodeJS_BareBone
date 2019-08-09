@@ -16,6 +16,7 @@ db.sequelize = sequelize;
 
 //#region userInfo
 db.UserInformation=require('../../model/rentmeapi/userInformation.model')(sequelize, Sequelize);
+db.Host=require('../../model/rentmeapi/host.model')(sequelize, Sequelize)
 //#endregion
 
 //#region ads
