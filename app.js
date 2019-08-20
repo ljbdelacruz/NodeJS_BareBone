@@ -14,39 +14,19 @@ app.use(bodyParser.json())
 //#endregion
 
 //#region variables
-const db = require('./app/config/rentme/dbconfig.js');
-const env = require('./app/config/rentme/global.js');
+const db = require('./app/config/ClientLocalization/dbconfig');
+const env = require('./app/config/ClientLocalization/global');
 var connection=require('./services/Plugins/ljnodelinq');
 const port = env.http;
 //#endregion
 
 //#region db population
-//#region ads
-var adsS=require('./app/seeders/rentme/ads.seender');
-var adsImageS=require('./app/seeders/rentme/adsImage.seeder')
-var userInformationS=require('./app/seeders/rentme/userInformation.seeder')
-var rentRequestS=require('./app/seeders/rentme/rentRequest.seeder')
-//#endregion
-
-var categoryS=require('./app/seeders/rentme/category.seeder')
-
-//#region reviews
-var userReviewS=require('./app/seeders/rentme/userReview.seeder')
-var adsReviewS=require('./app/seeders/rentme/adsReview.seeder')
-var hostReviewS=require('./app/seeders/rentme/hostReviews.seeder')
-//#endregion
-
+var localizationS=require('./app/seeders/clientLocalization/localization.seeder')
+var appLocalVersionS=require('./app/seeders/clientLocalization/appLocalVersion.seeder')
 if(env.migrate == true) {
 	db.sequelize.sync({force: true}).then(() => {
-    console.log("DB Migration Success")
-    categoryS.seed();
-    adsS.seed();
-    // adsImageS.seed();
-    // userInformationS.seed();
-    rentRequestS.seed();
-    userReviewS.seed();
-    adsReviewS.seed();
-    hostReviewS.seed();
+    localizationS.seed();
+    appLocalVersionS.seed();
 	});
 }
 
@@ -65,34 +45,10 @@ app.use(express.static(path.join(__dirname, 'public')));
 //#region rentme routers
 var indexRouter = require('./routes/index');
 app.use('/', indexRouter);
-
-//#region ads
-var adsRouter = require('./routes/rentmeapi/ads.api');
-app.use('/ads', adsRouter);
-var rentRequest=require('./routes/rentmeapi/rentrequest.api');
-app.use('/rentrequest', rentRequest);
-var adsImageRouter=require('./routes/rentmeapi/adsImage.api');
-app.use('/adsimage', adsImageRouter);
-//#endregion
-
-//#region category
-var categoryRouter=require('./routes/rentmeapi/categories.api')
-app.use('/category', categoryRouter);
-var subCategoryRouter=require('./routes/rentmeapi/subcategory.api')
-app.use('/subcategory', subCategoryRouter);
-//#endregion
-
-var userRouter=require('./routes/rentmeapi/user.api');
-app.use('/user', userRouter);
-
-//#region ratings
-var userRatingRouter=require('./routes/rentmeapi/userRatings.api');
-app.use('/userrating', userRatingRouter)
-var hostRatingRouter=require('./routes/rentmeapi/hostRatings.api')
-app.use('/hostrating', hostRatingRouter)
-var adsRatingReview=require('./routes/rentmeapi/adsRating.api');
-app.use('/adsrating', adsRatingReview)
-//#endregion
+var localizationRouter=require('./routes/clientLocalization/localization.api')
+app.use('/localization', localizationRouter)
+var appLocalVersionRouter=require('./routes/clientLocalization/applocalversioning.api')
+app.use('/applocalversion', appLocalVersionRouter)
 
 
 //#endregion
