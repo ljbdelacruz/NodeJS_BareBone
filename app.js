@@ -4,12 +4,12 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-var bodyParser = require('./node_modules/body-parser');
 var app = express();
 var server=require('http').createServer(app);
 var cors = require('cors');
 app.use(cors());
-
+const bodyParser = require('body-parser');
+// app.use(bodyParser);
 app.use(bodyParser.json())
 //#endregion
 
