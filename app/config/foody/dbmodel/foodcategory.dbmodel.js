@@ -1,5 +1,5 @@
 module.exports = (sequelize, Sequelize) => {
-	const Category = sequelize.define('cllocalization', {
+	const Category = sequelize.define('Category', {
     id:{
         type: Sequelize.INTEGER,
         primaryKey: true,
@@ -15,5 +15,5 @@ module.exports = (sequelize, Sequelize) => {
         type: Sequelize.STRING
     },
 	});
-	return FoodCategory;
+	return Category;
 }

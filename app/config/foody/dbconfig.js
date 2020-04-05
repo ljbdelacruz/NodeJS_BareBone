@@ -12,5 +12,9 @@ const db = {};
 db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 
-db.FoodCategory=require('./dbmodel/foodcategory.dbmodel');
+db.Category=require('./dbmodel/foodcategory.dbmodel');
+db.Product=require('./dbmodel/product.dbmodel');
+db.ImageStorage=require('./dbmodel/imagestorage.dbmodel');
 module.exports = db;
+
+
