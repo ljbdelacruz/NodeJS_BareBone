@@ -12,5 +12,4 @@ exports.login = (req, res) => {
   }else{
     res.send("No Data");
   }
-
 }
