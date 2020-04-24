@@ -13,8 +13,18 @@ db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 
 db.Category=require('./dbmodel/foodcategory.dbmodel');
-db.Product=require('./dbmodel/product.dbmodel');
 db.ImageStorage=require('./dbmodel/imagestorage.dbmodel');
+//TODO: Product
+db.Product=require('./dbmodel/product.dbmodel');
+//TODO: Cart
+db.UserCart=require('./dbmodel/usercart.dbmodel');
+db.UserCartItem=require('./dbmodel/usercartitem.dbmodel');
+//TODO: Users Info
+db.UsersInfo=require('./dbmodel/usersinfo.dbmodel');
+//TODO: Users store
+db.UserStore=require('./dbmodel/userstore.dbmodel');
+
+
 module.exports = db;
 
 

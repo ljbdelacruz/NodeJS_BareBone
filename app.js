@@ -11,28 +11,26 @@ app.use(cors());
 const bodyParser = require('body-parser');
 // app.use(bodyParser);
 app.use(bodyParser.json())
-//#endregion
+
 
 //#region variables
-const db = require('./app/config/ClientLocalization/dbconfig');
-const env = require('./app/config/ClientLocalization/global');
+const db = require('./app/config/foody/dbconfig');
+const env = require('./app/config/foody/global');
 var connection=require('./services/Plugins/ljnodelinq');
 const port = env.http;
-//#endregion
 
-//#region db population
-var localizationS=require('./app/seeders/clientLocalization/localization.seeder')
-var appLocalVersionS=require('./app/seeders/clientLocalization/appLocalVersion.seeder')
+//# db population
+var categorySeeder=require('./app/config/foody/seeder/category.seeder');
+// var appLocalVersionS=require('./app/seeders/clientLocalization/appLocalVersion.seeder')
 if(env.migrate == true) {
 	db.sequelize.sync({force: true}).then(() => {
-    localizationS.seed();
-    appLocalVersionS.seed();
+    // categorySeeder.seed();
+    // appLocalVersionS.seed();
 	});
 }
 
-//#endregion
 
-//#region view engine setup
+//# view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 app.use(logger('dev'));
@@ -42,13 +40,29 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 //#endregion
 
-//#region rentme routers
+//routers
 var indexRouter = require('./routes/index');
-app.use('/', indexRouter);
-var localizationRouter=require('./routes/clientLocalization/localization.api')
-app.use('/localization', localizationRouter)
-var appLocalVersionRouter=require('./routes/clientLocalization/applocalversioning.api')
-app.use('/applocalversion', appLocalVersionRouter)
+app.use(env.version1API+'/api/v1/', indexRouter);
+//token
+var tokenRouter = require('./routes/foodyapi/token.router');
+app.use(env.version1API+'/token', tokenRouter);
+
+//Cart routers
+var cartRouter=require("./routes/foodyapi/cart.router");
+app.use('/cart', cartRouter);
+var categoryRouter=require("./routes/foodyapi/category.router");
+app.use('/category', categoryRouter);
+var productRouter=require("./routes/foodyapi/product.router");
+app.use('/product', productRouter);
+var usersRouter=require("./routes/foodyapi/product.router");
+app.use('/users', usersRouter);
+var resRouter=require("./routes/foodyapi/resources.router");
+app.use('/resources', resRouter);
+
+// var localizationRouter=require('./routes/clientLocalization/localization.api')
+// app.use('/localization', localizationRouter)
+// var appLocalVersionRouter=require('./routes/clientLocalization/applocalversioning.api')
+// app.use('/applocalversion', appLocalVersionRouter)
 
 
 //#endregion

@@ -18,16 +18,17 @@
     "mysql": "^2.17.1",
     "mysql2": "^1.6.4",
     "node-rsa": "^1.0.5",
+    "oauth2-server": "^3.0.1",
     "pem-file": "^1.0.1",
     "pg": "^7.8.0",
     "pg-hstore": "^2.3.2",
     "pug": "2.0.0-beta11",
-    "sequelize": "^4.44.2",
+    "sequelize": "^4.44.4",
     "simple-oauth2": "^2.2.1",
     "sqlite3": "^4.0.6",
     "uuid": "^3.3.2"
   },
   "devDependencies": {
-    "nodemon": "^1.18.9"
+    "nodemon": "^1.19.4"
   }
 }

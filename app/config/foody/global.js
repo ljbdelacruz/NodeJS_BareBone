@@ -10,7 +10,7 @@ const env = {
 	//use this when running local db
 	dbHost:'localhost',
 	dialect: 'mysql',
-	migrate: false,
+	migrate: true,
 	//if demo true it will use the dummy data
 	demo:false,
 	//HTTP & HTTPS Service
@@ -20,7 +20,8 @@ const env = {
 	http: 8080,
 	domain:'http://0.0.0.0/',
 	//Token Config
-	tokenValidity: 2678400
+	tokenValidity: 2678400,
+	version1API:"/api/v1"
 };
 
 module.exports=env;
