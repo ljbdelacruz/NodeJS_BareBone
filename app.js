@@ -12,28 +12,27 @@ const bodyParser = require('body-parser');
 // app.use(bodyParser);
 app.use(bodyParser.json())
 
-
 //#region variables
-const db = require('./app/config/foody/dbconfig');
 const env = require('./app/config/foody/global');
 var connection=require('./services/Plugins/ljnodelinq');
 const port = env.http;
 
-//# db population
-var categorySeeder=require('./app/config/foody/seeder/category.seeder');
-// var appLocalVersionS=require('./app/seeders/clientLocalization/appLocalVersion.seeder')
-if(env.migrate == true) {
-	db.sequelize.sync({force: true}).then(() => {
-    // categorySeeder.seed();
-    // appLocalVersionS.seed();
-	});
-}
-
+// * Mongoose DB  Setup
+var mongoose=require("mongoose");
+mongoose.connect(env.mdblocalhost, {
+  useNewUrlParser:true,
+  useCreateIndex:true,
+  useFindAndModify:false
+}).then(con =>{
+  console.log(con.connections);
+  console.log("DB Connection Successful");
+});
 
 //# view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 app.use(logger('dev'));
+//TODO: Enable request body parsing for the endpoints
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
@@ -47,17 +46,22 @@ app.use(env.version1API+'/api/v1/', indexRouter);
 var tokenRouter = require('./routes/foodyapi/token.router');
 app.use(env.version1API+'/token', tokenRouter);
 
+var categoryRouter=require("./routes/foodyapi/category.router");
+app.use(env.version1API+'/category', categoryRouter);
+
+var productRouter=require("./routes/foodyapi/product.router");
+app.use(env.version1API+'/product', productRouter);
+
+var imageStorageRouter=require("./routes/foodyapi/imagestorage.router");
+app.use(env.version1API+'/imagestorage', imageStorageRouter);
+
 //Cart routers
 var cartRouter=require("./routes/foodyapi/cart.router");
-app.use('/cart', cartRouter);
-var categoryRouter=require("./routes/foodyapi/category.router");
-app.use('/category', categoryRouter);
-var productRouter=require("./routes/foodyapi/product.router");
-app.use('/product', productRouter);
-var usersRouter=require("./routes/foodyapi/product.router");
-app.use('/users', usersRouter);
-var resRouter=require("./routes/foodyapi/resources.router");
-app.use('/resources', resRouter);
+app.use(env.version1API+'/cart', cartRouter);
+
+//Users Info
+var userRouter=require("./routes/foodyapi/users.router");
+app.use(env.version1API+'/users', userRouter);
 
 // var localizationRouter=require('./routes/clientLocalization/localization.api')
 // app.use('/localization', localizationRouter)

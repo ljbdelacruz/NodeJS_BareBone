@@ -12,6 +12,9 @@ router.get('/', function(req, res, next){
     });
 });
 router.post('/', function(req, res, next){
+    console.log(req.body);
+    console.log(req.body.username);
+    console.log(req.body.password);
     res.status(200).json({
         success:200,
         error:"",
@@ -19,8 +22,10 @@ router.post('/', function(req, res, next){
             token:{type:"Token ", token:"1ee"}
         }
     });
-    res.send("Authenticate User Login and get access token");
+    // res.send("Authenticate User Login and get access token");
 });
+
+
 
 
 

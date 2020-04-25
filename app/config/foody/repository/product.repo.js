@@ -1,26 +1,30 @@
-const db = require('../dbconfig');
-const ProductDB = db.Product;
-//Init Sequelize Operation
-const Op = db.Sequelize.Op;
-
+var product=require("../mongodbscheme/product.model.js");
+const uuidv1 = require('uuid/v1');
 function ProductRepo(){
 }
 
-ProductRepo.prototype.checkVersion=function(id, success, failed){
-    
-    // ProductDB.findOne({
-    //   where:{
-    //     id:1
-    //   },
-    // }).then(version => {
-    //   if(!version){
-    //     failed(JSON.stringify({status:404, description:'Data Not Found'}))
-    //   }else{
-    //     success(version);
-    //   }
-    // })
-
+ProductRepo.prototype.insert=function(title, desc, price, ownerId, storeId, productReview, category, success, failed){
+    const item = product({
+      id:uuidv1().toString(),
+      title:title,
+      description:desc, 
+      price:price,
+      ownerId:ownerId,
+      storeId:storeId,
+      productReview:productReview,
+      category:category
+    });
+    item.save().then(data=>{
+        success(data);
+    }).catch(err=>{
+        failed(err);
+    });
 }
-module.exports=AppVersioningRepo;
+
+
+ProductRepo.prototype.findByCategory= async function(category, success, failed){
+    success(await product.find({category:category}))
+}
+module.exports=ProductRepo;
 
 

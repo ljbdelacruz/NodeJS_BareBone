@@ -5,7 +5,7 @@ const env = {
 	username: 'root',
 	password: 'soyamilk_05',
 	//mongo db server do not use if not gonna use
-	// mdbhost: 'mongodb+srv://db1-uyc2y.gcp.mongodb.net/test',
+	mdblocalhost: "mongodb://localhost:27017/foodyapi",
 	//mysql db host
 	//use this when running local db
 	dbHost:'localhost',
